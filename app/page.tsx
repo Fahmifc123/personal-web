@@ -12,7 +12,7 @@ export default function HomePage() {
       <HeroSection />
       <AboutSection />
       <ExperienceSection limit={2} isHomePage={true} />
-      <ProjectsSection limit={6} isHomePage={true} />
+      <ProjectsSection limit={4} isHomePage={true} />
       <TeachingSection />
       <IntelligoSection />
       <ContactSection />

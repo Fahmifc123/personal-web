@@ -15,38 +15,70 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    id: "nolimit",
+    id: "nolimit-combined",
     role: "HEAD OF DATA SCIENCE",
     company: "NOLIMIT INDONESIA",
-    location: "JAKARTA, INDONESIA",
-    dateRange: "2021 - PRESENT",
-    description: "Leading the data science team in developing high-scale NLP systems, sentiment analysis engines, and predictive analytics solutions. Spearheading strategic AI initiatives to drive business growth and client success.",
+    location: "BANDUNG, INDONESIA",
+    dateRange: "APR 2022 - PRESENT",
+    description: "Currently leading the data science team (Jul 2024 - Present) in managing AI & NLP projects like Sentiment Analysis, NER, and Chatbots. Previously served as a Data Scientist (Apr 2022 - Jul 2024) implementing AI pipelines with RAG and Deep Learning frameworks.",
     link: "https://nolimit.id"
   },
   {
+    id: "freelance-trainer",
+    role: "FREELANCE TRAINER & MENTOR",
+    company: "FREELANCE",
+    location: "REMOTE & SEASONAL",
+    dateRange: "JAN 2019 - PRESENT",
+    description: "Delivered 350+ training sessions on AI, Machine Learning, and NLP for professionals and corporate clients like Bank Mandiri, Toyota, and PLN. Specialized in AI model building and deployment using Python and FastAPI.",
+  },
+  {
     id: "intelligo",
-    role: "FOUNDER & LEAD MENTOR",
+    role: "HEAD OF LEARNING & DEVELOPMENT",
     company: "INTELLIGO ID",
-    location: "REMOTE / JAKARTA",
-    dateRange: "2022 - PRESENT",
-    description: "Building and scaling a premier AI & Data Science learning platform. Designed project-based curriculum that has successfully mentored over 500+ students into the tech industry.",
+    location: "REMOTE",
+    dateRange: "JAN 2022 - PRESENT",
+    description: "Built and delivered AI Programming & Data Science curricula for Bootcamps and Job Ready programs. Created hands-on modules on AI model development, NLP applications, and end-to-end AI projects.",
     link: "https://intelligo.id"
   },
   {
-    id: "senior-ai",
-    role: "SENIOR AI & NLP ENGINEER",
-    company: "ENTERPRISE SOLUTIONS",
-    location: "JAKARTA, INDONESIA",
-    dateRange: "2018 - 2021",
-    description: "Designed and implemented end-to-end Machine Learning pipelines. Focused on deep learning for NLP, automated routing systems, and scalable API deployments for enterprise clients."
+    id: "skilvul",
+    role: "MENTOR AI & DATA SCIENCE",
+    company: "SKILVUL (KAMPUS MERDEKA BATCH 6)",
+    location: "REMOTE",
+    dateRange: "JAN 2024 - JUN 2024",
+    description: "Mentored students in AI Programming & NLP projects under Kampus Merdeka Batch 6 (Skilvul x IBM). Focused on applied AI model development with Python.",
   },
   {
-    id: "data-scientist",
+    id: "binar",
+    role: "DATA SCIENCE FACILITATOR",
+    company: "BINAR ACADEMY",
+    location: "REMOTE",
+    dateRange: "SEP 2022 - SEP 2023",
+    description: "Facilitated Data Science bootcamps for B2B and B2C programs, including Digitalent Kominfo and corporate partners like PT. Bayer Indonesia.",
+  },
+  {
+    id: "kebun-pintar",
+    role: "LEAD DATA SCIENTIST",
+    company: "KEBUN PINTAR",
+    location: "REMOTE",
+    dateRange: "JAN 2021 - MAR 2022",
+    description: "Led data science initiatives for agricultural technology solutions.",
+  },
+  {
+    id: "bank-mandiri",
     role: "DATA SCIENTIST",
-    company: "TECH INNOVATION HUB",
+    company: "PT BANK MANDIRI (PERSERO) TBK",
+    location: "REMOTE",
+    dateRange: "NOV 2021 - DEC 2021",
+    description: "Worked on the Talent Score Card project in collaboration with Setneg, creating a recommendation system based on profile similarities.",
+  },
+  {
+    id: "telkom",
+    role: "DATA SCIENTIST",
+    company: "TELKOM INDONESIA (DDB)",
     location: "BANDUNG, INDONESIA",
-    dateRange: "2016 - 2018",
-    description: "Conducted statistical analysis and developed predictive models for user behavior and business optimization. Explored early-stage NLP research for Indonesian language processing."
+    dateRange: "AUG 2020 - JAN 2021",
+    description: "Developed Emerging Topic Recommendation systems within the Digital Business Directorate.",
   }
 ];
 

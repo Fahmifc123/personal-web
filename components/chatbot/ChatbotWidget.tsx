@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import type { ChatMessage as Msg } from "@/lib/chatbot";
-import { getChatbotReply } from "@/lib/chatbot";
+import { getAIChatReply, getChatbotReply } from "@/lib/chatbot";
 import { ChatMessage } from "./ChatMessage";
 
 export function ChatbotWidget() {
@@ -41,7 +41,10 @@ export function ChatbotWidget() {
     setIsLoading(true);
 
     try {
-      const reply = await getChatbotReply(trimmed);
+      const chatHistory = messages.map(m => ({ role: m.role, content: m.content }));
+      chatHistory.push({ role: "user", content: trimmed });
+      
+      const reply = await getAIChatReply(chatHistory);
       const botMessage: Msg = {
         id: `bot-${Date.now()}`,
         role: "assistant",

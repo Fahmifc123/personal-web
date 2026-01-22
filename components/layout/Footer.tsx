@@ -12,10 +12,10 @@ export function Footer() {
         </div>
         
         <div className="flex gap-8">
-          <a href="#about" className="hover:text-primary transition-colors">About</a>
-          <a href="#projects" className="hover:text-primary transition-colors">Projects</a>
-          <a href="#teaching" className="hover:text-primary transition-colors">Teaching</a>
-          <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
+          <a href="/" className="hover:text-primary transition-colors">Home</a>
+          <a href="/projects" className="hover:text-primary transition-colors">Projects & Portfolio</a>
+          <a href="/teaching" className="hover:text-primary transition-colors">Teaching</a>
+          <a href="/contact" className="hover:text-primary transition-colors">Contact</a>
         </div>
 
         <div className="flex flex-col md:items-end gap-2">

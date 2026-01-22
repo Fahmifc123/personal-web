@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Send, User } from "lucide-react";
-import { getChatbotReply } from "@/lib/chatbot";
+import { getAIChatReply, getChatbotReply } from "@/lib/chatbot";
 import { cn } from "@/lib/utils";
 
 export function HeroSection() {
@@ -31,7 +31,10 @@ export function HeroSection() {
     setIsLoading(true);
 
     try {
-      const reply = await getChatbotReply(input);
+      const chatHistory = messages.map(m => ({ role: m.role, content: m.content }));
+      chatHistory.push({ role: "user", content: input });
+      
+      const reply = await getAIChatReply(chatHistory);
       setMessages((prev) => [
         ...prev,
         {
@@ -62,12 +65,13 @@ export function HeroSection() {
             </div>
 
             <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl">
-              I lead data teams, build AI systems, and train future <br />
-              <span className="text-primary">Data Scientists</span>
+              I Lead Data Science Teams, Build AI, and Educate in<br />
+              <span className="text-primary">DS, AI & NLP.</span>
             </h1>
 
             <p className="max-w-xl text-lg text-muted-foreground">
-              Head of Data Science at NoLimit Indonesia · AI Engineer · Data Science Mentor at leading tech academies.
+              Head of Data Science at NoLimit Indonesia · AI & NLP Engineer <br />
+              Data Science Mentor at leading tech academies.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -97,7 +101,7 @@ export function HeroSection() {
                     <img src="/img/fahmi.png" alt="Fahmi" className="h-full w-full object-cover" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-bold">Fahmi Digital Twin</h3>
+                    <h3 className="text-sm font-bold">Fahmi AI</h3>
                     <div className="flex items-center gap-1.5 text-[10px] text-muted-foreground">
                       <span className="h-1.5 w-1.5 rounded-full bg-green-500"></span> Online
                     </div>

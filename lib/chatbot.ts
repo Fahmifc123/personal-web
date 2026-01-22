@@ -12,6 +12,28 @@ const personaIntro =
   "Data Scientist, AI & NLP Engineer, sekaligus trainer dan mentor AI & Data Science secara freelance. " +
   "Saya akan menjawab dengan sudut pandang seorang praktisi dan pemimpin tim data.";
 
+export async function getAIChatReply(messages: { role: string; content: string }[]): Promise<string> {
+  try {
+    const response = await fetch("/api/chat", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ messages }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch AI response");
+    }
+
+    const data = await response.json();
+    return data.content;
+  } catch (error) {
+    console.error("Chat API Error:", error);
+    return "Maaf, sepertinya ada kendala teknis saat menghubungkan ke otak AI saya. Coba lagi nanti ya!";
+  }
+}
+
 export async function getChatbotReply(userMessage: string): Promise<string> {
   const text = userMessage.toLowerCase();
 

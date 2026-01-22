@@ -62,7 +62,7 @@ export function IntelligoSection() {
               
               <div className="mt-10 flex flex-wrap gap-4">
                 <a
-                  href="https://intelligo.id/wa-mintell"
+                  href="https://intelligo.id"
                   target="_blank"
                   className="inline-flex items-center gap-3 rounded-2xl bg-primary px-8 py-4 text-base font-black text-black shadow-xl shadow-primary/20 transition-all hover:-translate-y-1 hover:shadow-primary/30 active:scale-95"
                 >

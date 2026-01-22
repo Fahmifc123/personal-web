@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Send, User, Bot, Sparkles, ChevronLeft, Trash2 } from "lucide-react";
-import { getChatbotReply } from "@/lib/chatbot";
+import { getAIChatReply, getChatbotReply } from "@/lib/chatbot";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -44,7 +44,10 @@ export default function AskAIPage() {
     setIsLoading(true);
 
     try {
-      const reply = await getChatbotReply(input);
+      const chatHistory = messages.map(m => ({ role: m.role, content: m.content }));
+      chatHistory.push({ role: "user", content: input });
+      
+      const reply = await getAIChatReply(chatHistory);
       setMessages((prev) => [
         ...prev,
         {
@@ -88,7 +91,7 @@ export default function AskAIPage() {
             <div>
               <h1 className="text-sm font-bold">Ask Fahmi AI</h1>
               <p className="text-[10px] text-muted-foreground flex items-center gap-1">
-                <Sparkles size={10} className="text-primary" /> Active Digital Twin
+                <Sparkles size={10} className="text-primary" /> Active AI
               </p>
             </div>
           </div>

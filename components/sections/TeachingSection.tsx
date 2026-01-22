@@ -17,7 +17,7 @@ import { cn } from "@/lib/utils";
 
 const stats = [
   { label: "Training Sessions", value: "350+", icon: Presentation },
-  { label: "Students & Professionals", value: "1,000+", icon: Users },
+  { label: "Students & Professionals", value: "7,000+", icon: Users },
   { label: "Corporate Clients", value: "20+", icon: Building2 },
   { label: "Academic Partners", value: "10+", icon: GraduationCap },
 ];

@@ -178,7 +178,7 @@ export function ProjectsSection({ limit, isHomePage = false }: { limit?: number;
             href="/projects"
             className="group inline-flex items-center gap-2 rounded-full border border-primary px-8 py-4 text-sm font-bold text-primary transition-all hover:bg-primary hover:text-black"
           >
-            SHOW MORE PROJECTS
+            SHOW MORE
             <ChevronRight className="transition-transform group-hover:translate-x-1" size={18} />
           </a>
         </div>
