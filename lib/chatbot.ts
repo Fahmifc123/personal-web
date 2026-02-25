@@ -34,8 +34,7 @@ export async function getAIChatReply(messages: { role: string; content: string }
     return data.content;
   } catch (error) {
     console.error("Chat API Error:", error);
-    // Fallback to pattern-based response if backend unreachable
-    return getChatbotReply(messages[messages.length - 1]?.content || "");
+    return "Maaf, sepertinya ada kendala teknis saat menghubungkan ke otak AI saya. Coba lagi nanti ya!";
   }
 }
 
