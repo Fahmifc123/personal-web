@@ -4,8 +4,8 @@ import { NextResponse } from "next/server";
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
-// Python Backend URL
-const PYTHON_BACKEND_URL = process.env.PYTHON_BACKEND_URL || "http://43.134.70.75:8101";
+// Python Backend URL (ngrok tunnel)
+const PYTHON_BACKEND_URL = "https://cdd9-43-134-70-75.ngrok-free.app";
 
 export async function POST(req: Request) {
   try {
