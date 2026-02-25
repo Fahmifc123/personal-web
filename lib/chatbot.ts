@@ -13,7 +13,7 @@ const personaIntro =
   "Saya akan menjawab dengan sudut pandang seorang praktisi dan pemimpin tim data.";
 
 // Python Backend URL via ngrok (HTTPS)
-const PYTHON_BACKEND_URL = "https://cdd9-43-134-70-75.ngrok-free.app";
+const PYTHON_BACKEND_URL = "https://7a31-43-134-70-75.ngrok-free.app";
 
 export async function getAIChatReply(messages: { role: string; content: string }[]): Promise<string> {
   try {
