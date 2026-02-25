@@ -12,10 +12,13 @@ const personaIntro =
   "Data Scientist, AI & NLP Engineer, sekaligus trainer dan mentor AI & Data Science secara freelance. " +
   "Saya akan menjawab dengan sudut pandang seorang praktisi dan pemimpin tim data.";
 
+// Python Backend URL via ngrok (HTTPS)
+const PYTHON_BACKEND_URL = "https://cdd9-43-134-70-75.ngrok-free.app";
+
 export async function getAIChatReply(messages: { role: string; content: string }[]): Promise<string> {
   try {
-    // Use Next.js API Route as proxy to avoid mixed content issues
-    const response = await fetch("/api/chat", {
+    // Direct connection to Python backend via ngrok HTTPS
+    const response = await fetch(`${PYTHON_BACKEND_URL}/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
