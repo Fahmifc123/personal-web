@@ -1,5 +1,9 @@
 import { NextResponse } from "next/server";
 
+// Force dynamic rendering for this route
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 // Python Backend URL
 const PYTHON_BACKEND_URL = process.env.PYTHON_BACKEND_URL || "http://43.134.70.75:8101";
 
