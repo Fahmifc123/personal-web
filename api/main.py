@@ -32,267 +32,52 @@ class ChatMessage(BaseModel):
 class ChatRequest(BaseModel):
     messages: List[ChatMessage]
 
-# CV Context (RAG)
+# CV Context (RAG) - Ringkas dan fokus
 CV_CONTEXT = """
-===========================================================
-MUHAMMAD FAHMI
-Head of Data Science | AI Engineer | NLP Specialist
-===========================================================
-
-Brand Identity:
-MF | Fahmi
-
-Website Sections:
-Home
-Experience
-Projects & Portfolio
-Teaching
-Contact
-Ask Fahmi AI
-
-Tagline:
-Head of Data Science & AI Engineer.
-Head of L&D at Intelligo ID.
-
-Location:
-Bandung, Indonesia
-
-Contact:
-Phone: 081263299950
-Email: mfahmipamungkas123@gmail.com
-
-Availability:
-Available for hire
-Built with Next.js & Tailwind CSS
-
-===========================================================
-PROFESSIONAL SUMMARY
-===========================================================
-
-AI & NLP Leader specializing in enterprise-grade AI systems,
-Large Language Models (LLMs), ABSA, RAG architecture,
-perception intelligence, and decision intelligence systems.
-
-Currently leading Data Science division at NoLimit Indonesia,
-designing scalable AI infrastructure for government and enterprise clients.
-
-Focus Areas:
-- NLP Production Systems
-- Retrieval-Augmented Generation (RAG)
-- Sentiment & Narrative Intelligence
-- LLM Verification Systems
-- GPU Optimization (L4 22GB)
-- ONNX Runtime Deployment
-- Kafka Streaming Architecture
-- Elasticsearch Indexing & Search
-
-===========================================================
-EXPERIENCE
-===========================================================
-
-NO LIMIT INDONESIA
-Head of Data Science (Jul 2024 – Present)
-
-- Lead AI strategy & roadmap
-- Architect large-scale NLP systems
-- Manage Data Science & ML Engineering team
-- Oversee ABSA, Narrative Intelligence, Risk Scoring systems
-- Design RAG-based knowledge systems
-- Optimize inference pipelines with GPU & ONNX
-- Integrate Kafka-based streaming ingestion
-
-Previous:
-Data Scientist – NoLimit Indonesia (Apr 2022 – Jul 2024)
-
-Past Roles:
-Lead Data Scientist – Kebun Pintar
-Data Scientist – Bank Mandiri
-Data Scientist – Telkom DDB
-
-Industry Exposure:
-Banking, Mining, Automotive, Energy, FMCG, Government, Startup
-
-===========================================================
-PORTFOLIO
-Strategic Data & AI Projects
-===========================================================
-
-A curated selection of enterprise-grade NLP, predictive modeling,
-and AI automation solutions delivered for high-scale environments.
-
-Categories:
-All | Machine Learning | AI | NLP | Computer Vision | Data Science
-
------------------------------------------------------------
-1. NLP
-Sentiment ABSA Engine untuk Social Media & Online Media
------------------------------------------------------------
-
-The Challenge:
-Perusahaan kesulitan memahami sentimen publik secara spesifik 
-karena satu konten sering membahas banyak isu atau aktor. 
-Sentimen umum tidak cukup untuk analisis reputasi dan isu strategis.
-
-The Impact:
-Analisis sentimen menjadi kontekstual per isu/aspek dan dapat digunakan 
-real-time untuk monitoring serta pengambilan keputusan strategis.
-
-Technologies:
-Python, PyTorch, Hugging Face, ONNX Runtime, FastAPI, Kafka, GPU
-
-Scale:
-Ratusan ribu hingga jutaan data social media & online media per bulan.
-
------------------------------------------------------------
-2. Machine Learning
-Language Detection & Intelligent Routing Engine
------------------------------------------------------------
-
-The Challenge:
-Konten non-Bahasa Indonesia membebani sistem analitik 
-dan meningkatkan biaya komputasi.
-
-The Impact:
-Efisiensi resource meningkat, processing time menurun,
-kualitas output NLP lebih terjaga.
-
-Technologies:
-Python, Machine Learning, NLP, FastAPI, Pandas
-
-Scale:
-Ratusan ribu data per bulan dari seluruh ingestion pipeline.
-
------------------------------------------------------------
-3. Data Science
-Clustering & SNA/DNA Engine untuk Isu dan Narasi Publik
------------------------------------------------------------
-
-The Challenge:
-Stakeholder kesulitan memahami isu utama, pola percakapan,
-dan hubungan antar aktor dari data tidak terstruktur.
-
-The Impact:
-Peta isu & narasi lebih terstruktur dan berbasis data,
-mendukung strategic communication & risk mitigation.
-
-Technologies:
-Python, Pandas, Clustering, Network Analysis, FastAPI
-
-Scale:
-Puluhan hingga ratusan ribu data percakapan per periode.
-
------------------------------------------------------------
-4. AI
-Automated Media Summarization Engine (Daily, WA, & Report)
------------------------------------------------------------
-
-The Challenge:
-Ringkasan manual dari ribuan data media per hari tidak efisien.
-
-The Impact:
-Waktu pembuatan laporan berkurang drastis,
-insight diterima lebih cepat oleh stakeholder eksekutif.
-
-Technologies:
-Python, LLM API, NLP, FastAPI, Pandas
-
-Scale:
-Ratusan ribu data per hari dari social & online media.
-
------------------------------------------------------------
-5. AI
-Sentiment LLM – Ignore & Verify System
------------------------------------------------------------
-
-The Challenge:
-Konten ambigu, sarkasme, dan noise tinggi 
-menurunkan akurasi model sentiment tradisional.
-
-The Impact:
-Akurasi insight meningkat signifikan,
-false positive & false negative berkurang.
-
-Technologies:
-Python, LLM API, FastAPI, Pandas
-
-Scale:
-Subset data ambigu dari ratusan ribu data bulanan.
-
------------------------------------------------------------
-6. NLP
-NER, Spokesperson & Statement Extraction Engine
------------------------------------------------------------
-
-The Challenge:
-Sulit mengidentifikasi siapa berbicara,
-mewakili siapa, dan pernyataan apa yang disampaikan.
-
-The Impact:
-Mempercepat analisis aktor & narasi,
-menjadi fondasi untuk Sentiment & SNA engine.
-
-Technologies:
-Python, NLP, Regex, Machine Learning, FastAPI, Pandas
-
-Scale:
-Ratusan ribu artikel online media & social media per bulan.
-
-===========================================================
-TEACHING
-===========================================================
-
-Head of L&D – Intelligo ID (Jan 2022 – Present)
-
-- Design AI & Data Science curriculum
-- Build Job-Ready AI programs
-- NLP specialization track
-- Mentored 1000+ learners
-
-Corporate Trainer:
-350+ sessions (Bank Danamon, Toyota, PLN, Bayer, Freeport)
-
-Mentor:
-Skilvul x Kampus Merdeka
-Binar Academy
-Startup Campus
-
-Guest Lecturer:
-UI, UGM, IPB, Atma Jaya
-
-===========================================================
-TECHNICAL STACK
-===========================================================
-
-Languages:
-Python, SQL
-
-Frameworks:
-PyTorch, TensorFlow, Hugging Face
-
-Deployment:
-FastAPI, ONNX Runtime, Docker
-
-Search & Retrieval:
-Elasticsearch, Vector Search, RAG
-
-Streaming:
-Kafka
-
-Optimization:
-GPU Acceleration, Quantization, Concurrency Optimization
-
-===========================================================
-CAREER POSITIONING
-===========================================================
-
-Head of Data Science & AI Engineer
-Strategic NLP Architect
-Enterprise AI System Designer
-Decision Intelligence Builder
-
-===========================================================
-© 2026 Muhammad Fahmi.
-===========================================================
+MUHAMMAD FAHMI - Head of Data Science & AI Engineer
+
+POSISI SEKARANG:
+- Head of Data Science di NoLimit Indonesia (Jul 2024 - Present)
+- Data Scientist di NoLimit Indonesia (Apr 2022 - Jul 2024)
+- Head of L&D di Intelligo ID (Jan 2022 - Present)
+
+LOKASI: Bandung, Indonesia
+KONTAK: mfahmipamungkas123@gmail.com | 081263299950
+
+KEAHLIAN UTAMA:
+- NLP & Large Language Models (LLMs)
+- Sentiment Analysis & ABSA (Aspect-Based Sentiment Analysis)
+- RAG (Retrieval-Augmented Generation)
+- Machine Learning & Deep Learning
+- GPU Optimization (L4 22GB, ONNX Runtime)
+- MLOps: FastAPI, Kafka, Elasticsearch
+
+PROJECT UTAMA:
+1. Sentiment ABSA Engine - Analisis sentimen per aspek untuk social media & online media (PyTorch, Hugging Face, ONNX, GPU)
+2. Language Detection & Routing - Filter konten non-Indonesia (ML, NLP)
+3. Clustering & SNA Engine - Topic modeling dan network analysis untuk narasi publik
+4. Automated Media Summarization - Ringkasan otomatis ribuan data media per hari (LLM)
+5. Sentiment LLM Verify - Validasi sentimen ambigu menggunakan LLM
+6. NER & Statement Extraction - Ekstraksi entitas dan pernyataan dari teks
+
+PENGALAMAN MENGAJAR:
+- 350+ sesi corporate training (Bank Danamon, Toyota, PLN, Bayer, Freeport)
+- Mentor: Skilvul x Kampus Merdeka, Binar Academy, Startup Campus
+- Guest Lecturer: UI, UGM, IPB, Atma Jaya
+- 1000+ learners mentored
+
+RIWAYAT KERJA:
+- NoLimit Indonesia: Head of Data Science (2024-present), Data Scientist (2022-2024)
+- Kebun Pintar: Lead Data Scientist
+- Bank Mandiri: Data Scientist
+- Telkom DDB: Data Scientist
+
+PENDIDIKAN:
+- Applied Bachelor in Informatics Engineering, Politeknik Pos Indonesia (GPA 3.54)
+
+SERTIFIKASI:
+- IBM Enterprise Data Science
+- Microsoft Certified Azure AI Fundamentals
 """
 
 # Setup LangChain
