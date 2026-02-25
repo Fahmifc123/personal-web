@@ -1,13 +1,18 @@
+import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
+from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.messages import HumanMessage, AIMessage
 
-# OpenAI API Key - Internal Use Only
-OPENAI_API_KEY = "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"
+# Load environment variables
+load_dotenv()
+
+# OpenAI API Key from environment variable
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 
 app = FastAPI(title="Ask Fahmi AI Backend")
 

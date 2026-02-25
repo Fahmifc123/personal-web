@@ -82,10 +82,11 @@ export function HeroSection() {
                 <Send className="mr-2 h-4 w-4" /> Ask Fahmi AI
               </Link>
               <Link
-                href="#projects"
+                href="https://drive.google.com/file/d/1rMoms5ofNbPzPhTXqfyCF1hUvixL0qyn/view?usp=sharing"
+                target="_blank"
                 className="inline-flex h-12 items-center justify-center rounded-md border border-border bg-transparent px-8 text-base font-bold text-foreground transition-all hover:bg-accent"
               >
-                View Portfolio
+                View/Download CV
               </Link>
             </div>
           </div>
