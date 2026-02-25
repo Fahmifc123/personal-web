@@ -12,12 +12,9 @@ const personaIntro =
   "Data Scientist, AI & NLP Engineer, sekaligus trainer dan mentor AI & Data Science secara freelance. " +
   "Saya akan menjawab dengan sudut pandang seorang praktisi dan pemimpin tim data.";
 
-// Python Backend URL
-const PYTHON_BACKEND_URL = process.env.NEXT_PUBLIC_PYTHON_BACKEND_URL || "http://43.134.70.75:8101";
-
 export async function getAIChatReply(messages: { role: string; content: string }[]): Promise<string> {
   try {
-    const response = await fetch(`${PYTHON_BACKEND_URL}/chat`, {
+    const response = await fetch("/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

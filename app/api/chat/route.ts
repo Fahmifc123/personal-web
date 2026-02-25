@@ -1,46 +1,34 @@
-import OpenAI from "openai";
-import { getCVContext } from "@/lib/cv-data";
 import { NextResponse } from "next/server";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+// Python Backend URL
+const PYTHON_BACKEND_URL = process.env.PYTHON_BACKEND_URL || "http://43.134.70.75:8101";
 
 export async function POST(req: Request) {
   try {
     const { messages } = await req.json();
-    const cvContext = getCVContext();
 
-    const response = await openai.chat.completions.create({
-      model: "gpt-4o-mini",
-      temperature: 0.7,
-      messages: [
-        {
-          role: "system",
-          content: `You are Ask Fahmi AI, the AI persona of Muhammad Fahmi. 
-Respond naturally as Fahmi, a Head of Data Scientist, AI & NLP Engineer, and Mentor.
-Use the following CV information to answer questions about Fahmi's experience, projects, and expertise.
-If the question is not related to Fahmi or his field, politely redirect them.
-Keep answers professional yet approachable, as if Fahmi himself is talking.
-Response should be in the same language as the user's message (default to Indonesian if unsure).
-
-CV CONTEXT:
-${cvContext}`
-        },
-        ...messages
-      ],
+    // Forward request to Python backend
+    const response = await fetch(`${PYTHON_BACKEND_URL}/chat`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ messages }),
     });
 
-    return NextResponse.json({ 
-      content: response.choices[0].message.content 
-    });
+    if (!response.ok) {
+      const errorData = await response.json().catch(() => ({}));
+      throw new Error(errorData.error || `Backend error: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return NextResponse.json({ content: data.content });
   } catch (error: any) {
-    console.error("OpenAI Error:", error);
+    console.error("Proxy Error:", error);
     return NextResponse.json(
       { 
         error: "Failed to get response from AI", 
-        details: error.message || "Unknown error",
-        code: error.code || "UNKNOWN"
+        details: error.message || "Unknown error"
       },
       { status: 500 }
     );
