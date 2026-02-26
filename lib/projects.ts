@@ -25,14 +25,25 @@ export const projects: Project[] = [
     link: "/projects/realtime-nlp-data-platform"
   },
   {
+    id: "ai-report-generation",
+    type: "Data Engineering",
+    title: "AI-Powered Automated Report Generation Pipeline",
+    businessProblem: "Tim bisnis membutuhkan laporan dan presentasi rutin dari data analitik, namun pembuatan manual memakan waktu berjam-jam. Diperlukan sistem yang dapat secara otomatis mengolah data mentah, menghasilkan insight dengan AI, dan membuat dokumen presentasi (PPT/PDF) siap download tanpa intervensi manual.",
+    dataScale: "Ratusan report per bulan dengan berbagai format dan kompleksitas data.",
+    modelApproach: "Membangun pipeline end-to-end: API ingestion → Airflow orchestration → AI inference untuk analisis data → Template-based report generation → PDF/PPT export → MinIO storage untuk download. Airflow DAG mengatur scheduling, error handling, dan retry logic. Menggunakan Jinja2 templates untuk dynamic content dan python-pptx/reportlab untuk document generation.",
+    outcomeImpact: "Mengurangi waktu pembuatan report dari 4 jam menjadi 5 menit, meningkatkan konsistensi kualitas laporan, dan memungkinkan tim fokus pada strategic analysis daripada manual formatting.",
+    toolsStack: ["Python", "Apache Airflow", "FastAPI", "LLM API", "python-pptx", "ReportLab", "MinIO", "Jinja2", "Pandas"],
+    link: "/projects/ai-report-generation"
+  },
+  {
     id: "mlops-auto-retrain",
     type: "Data Engineering",
-    title: "MLOps Pipeline: Automated Model Retraining & Deployment",
+    title: "MLOps Pipeline: Automated Model Retraining & Deployment with Airflow",
     businessProblem: "Model sentiment analysis mengalami degradasi akurasi seiring waktu karena data drift. Tim ML membutuhkan sistem yang dapat secara otomatis mendeteksi penurunan performa, re-train dengan data baru, dan melakukan deployment hanya jika model lebih baik dari versi sebelumnya.",
     dataScale: "Ribuan sampel baru per minggu untuk continuous training dan model evaluation.",
-    modelApproach: "Membangun MLOps pipeline dengan fitur: automated data ingestion → model training → accuracy comparison → conditional deployment. Sistem membandingkan akurasi model baru vs model production, dan hanya melakukan deployment jika akurasi meningkat. Model registry digunakan untuk versioning dan rollback capability.",
-    outcomeImpact: "Model selalu up-to-date dengan data terbaru, akurasi meningkat 15% dalam 3 bulan, dan deployment risk berkurang karena adanya accuracy gate sebelum promote ke production.",
-    toolsStack: ["Python", "MLflow", "FastAPI", "Docker", "Kubernetes", "GitHub Actions", "PostgreSQL", "ONNX"],
+    modelApproach: "Membangun MLOps pipeline yang diorchestrasi oleh Apache Airflow dengan workflow: (1) Data ingestion task → (2) Auto retraining dengan data baru → (3) Accuracy comparison vs production model → (4) Conditional deployment jika akurasi meningkat. Airflow DAG menjadwalkan pipeline harian, monitoring SLA, dan alerting jika ada failure. Model registry digunakan untuk versioning dan rollback capability.",
+    outcomeImpact: "Model selalu up-to-date dengan data terbaru, akurasi meningkat 15% dalam 3 bulan, deployment risk berkurang karena adanya accuracy gate sebelum promote ke production, dan operational efficiency dengan automated scheduling via Airflow.",
+    toolsStack: ["Python", "Apache Airflow", "MLflow", "FastAPI", "Docker", "Kubernetes", "GitHub Actions", "PostgreSQL", "ONNX"],
     link: "/projects/mlops-auto-retrain"
   },
   {
