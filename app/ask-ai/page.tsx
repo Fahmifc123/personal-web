@@ -5,6 +5,7 @@ import { Send, User, Bot, Sparkles, ChevronLeft, Trash2 } from "lucide-react";
 import { getAIChatReply, getChatbotReply } from "@/lib/chatbot";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import ReactMarkdown from "react-markdown";
 
 interface Message {
   role: "user" | "assistant";
@@ -16,18 +17,17 @@ export default function AskAIPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Halo! Saya Ask Fahmi AI. Saya bisa membantu menjawab pertanyaan seputar pengalaman saya di bidang Data Science, AI, NLP, hingga program mentoring di Intelligo ID. Ada yang ingin Anda tanyakan?",
+      content: "Halo! Saya Ask Fahmi AI. Saya bisa membantu menjawab pertanyaan seputar pengalaman saya di bidang Data Science, AI, NLP, hingga aktivitas mengajar dan mentoring. Ada yang ingin Anda tanyakan?",
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  // Auto-scroll to bottom when messages change
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
-    }
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isLoading]);
 
   const handleSendMessage = async (e: React.FormEvent) => {
@@ -106,10 +106,7 @@ export default function AskAIPage() {
       </div>
 
       {/* Chat Area */}
-      <div 
-        ref={scrollRef}
-        className="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 scroll-smooth bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"
-      >
+      <div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 scroll-smooth bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]">
         <div className="mx-auto max-w-3xl space-y-6">
           {messages.map((msg, i) => (
             <div
@@ -137,7 +134,13 @@ export default function AskAIPage() {
                       : "bg-card border border-border text-foreground leading-relaxed"
                   )}
                 >
-                  {msg.content}
+                  {msg.role === "user" ? (
+                    <p>{msg.content}</p>
+                  ) : (
+                    <div className="prose prose-sm dark:prose-invert max-w-none [&_p]:my-1 [&_ul]:my-1 [&_ol]:my-1 [&_li]:my-0.5 [&_strong]:text-primary [&_a]:text-primary [&_a]:underline">
+                      <ReactMarkdown>{msg.content}</ReactMarkdown>
+                    </div>
+                  )}
                 </div>
                 <span className="text-[10px] text-muted-foreground px-1">{msg.time}</span>
               </div>
@@ -159,6 +162,7 @@ export default function AskAIPage() {
               </div>
             </div>
           )}
+          <div ref={messagesEndRef} />
         </div>
       </div>
 

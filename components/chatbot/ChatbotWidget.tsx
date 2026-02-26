@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import type { ChatMessage as Msg } from "@/lib/chatbot";
 import { getAIChatReply, getChatbotReply } from "@/lib/chatbot";
 import { ChatMessage } from "./ChatMessage";
@@ -18,6 +18,12 @@ export function ChatbotWidget() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // Auto-scroll to bottom when messages change
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
 
   useEffect(() => {
     const handler = () => setIsOpen(true);
@@ -82,8 +88,7 @@ export function ChatbotWidget() {
             <div>
               <p className="text-xs font-semibold text-slate-100">Ask Fahmi AI</p>
               <p className="text-[11px] text-slate-400">
-                Tanya seputar peran full-time sebagai Data Scientist/AI &amp; NLP Engineer,
-                aktivitas mengajar/mentoring, atau program Intelligo ID.
+                Tanya seputar peran sebagai Data Scientist/AI &amp; NLP Engineer, aktivitas mengajar/mentoring, atau project portfolio.
               </p>
             </div>
             <button
@@ -103,6 +108,7 @@ export function ChatbotWidget() {
                 Fahmi AI sedang menyusun jawaban...
               </p>
             )}
+            <div ref={messagesEndRef} />
           </div>
 
           <form
@@ -115,7 +121,7 @@ export function ChatbotWidget() {
             <input
               type="text"
               className="flex-1 rounded-full border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-slate-100 outline-none placeholder:text-slate-500 focus:border-emerald-400"
-              placeholder="Tanya peran, project, atau program Intelligo ID..."
+              placeholder="Tanya peran, project, atau pengalaman..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
             />
