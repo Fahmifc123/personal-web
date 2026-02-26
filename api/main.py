@@ -2,7 +2,7 @@ import os
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from typing import List
+from typing import List, Optional
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
@@ -31,54 +31,7 @@ class ChatMessage(BaseModel):
 
 class ChatRequest(BaseModel):
     messages: List[ChatMessage]
-
-# CV Context (RAG) - Ringkas dan fokus
-CV_CONTEXT = """
-MUHAMMAD FAHMI - Head of Data Science & AI Engineer
-
-POSISI SEKARANG:
-- Head of Data Science di NoLimit Indonesia (Jul 2024 - Present)
-- Data Scientist di NoLimit Indonesia (Apr 2022 - Jul 2024)
-- Head of L&D di Intelligo ID (Jan 2022 - Present)
-
-LOKASI: Bandung, Indonesia
-KONTAK: mfahmipamungkas123@gmail.com | 081263299950
-
-KEAHLIAN UTAMA:
-- NLP & Large Language Models (LLMs)
-- Sentiment Analysis & ABSA (Aspect-Based Sentiment Analysis)
-- RAG (Retrieval-Augmented Generation)
-- Machine Learning & Deep Learning
-- GPU Optimization (L4 22GB, ONNX Runtime)
-- MLOps: FastAPI, Kafka, Elasticsearch
-
-PROJECT UTAMA:
-1. Sentiment ABSA Engine - Analisis sentimen per aspek untuk social media & online media (PyTorch, Hugging Face, ONNX, GPU)
-2. Language Detection & Routing - Filter konten non-Indonesia (ML, NLP)
-3. Clustering & SNA Engine - Topic modeling dan network analysis untuk narasi publik
-4. Automated Media Summarization - Ringkasan otomatis ribuan data media per hari (LLM)
-5. Sentiment LLM Verify - Validasi sentimen ambigu menggunakan LLM
-6. NER & Statement Extraction - Ekstraksi entitas dan pernyataan dari teks
-
-PENGALAMAN MENGAJAR:
-- 350+ sesi corporate training (Bank Danamon, Toyota, PLN, Bayer, Freeport)
-- Mentor: Skilvul x Kampus Merdeka, Binar Academy, Startup Campus
-- Guest Lecturer: UI, UGM, IPB, Atma Jaya
-- 1000+ learners mentored
-
-RIWAYAT KERJA:
-- NoLimit Indonesia: Head of Data Science (2024-present), Data Scientist (2022-2024)
-- Kebun Pintar: Lead Data Scientist
-- Bank Mandiri: Data Scientist
-- Telkom DDB: Data Scientist
-
-PENDIDIKAN:
-- Applied Bachelor in Informatics Engineering, Politeknik Pos Indonesia (GPA 3.54)
-
-SERTIFIKASI:
-- IBM Enterprise Data Science
-- Microsoft Certified Azure AI Fundamentals
-"""
+    context: Optional[str] = None  # Dynamic context from frontend
 
 # Setup LangChain
 llm = ChatOpenAI(
@@ -87,16 +40,22 @@ llm = ChatOpenAI(
     api_key=OPENAI_API_KEY
 )
 
-prompt = ChatPromptTemplate.from_messages([
-    ("system", f"""You are Ask Fahmi AI, the AI persona of Muhammad Fahmi.
-Respond naturally as Fahmi, a Head of Data Scientist, AI & NLP Engineer, and Mentor.
-Use the following CV information to answer questions about Fahmi's experience, projects, and expertise.
+# Base system prompt
+BASE_SYSTEM_PROMPT = """You are Ask Fahmi AI, the AI persona of Muhammad Fahmi.
+Respond naturally as Fahmi, a Head of Data Scientist, AI & NLP Engineer, and Freelance Trainer & Mentor for Data Science & AI.
+Use the following information to answer questions about Fahmi's experience, projects, and expertise.
 If the question is not related to Fahmi or his field, politely redirect them.
 Keep answers professional yet approachable, as if Fahmi himself is talking.
 Response should be in the same language as the user's message (default to Indonesian if unsure).
 
-CV CONTEXT:
-{CV_CONTEXT}"""),
+IMPORTANT: Fahmi is presented as a FREELANCE TRAINER & MENTOR for Data Science & AI, NOT associated with Intelligo ID.
+His teaching experience includes 350+ training sessions for corporate clients like Bank Danamon, Toyota, PLN, and Freeport.
+
+FULL WEBSITE CONTEXT:
+{context}"""
+
+prompt = ChatPromptTemplate.from_messages([
+    ("system", BASE_SYSTEM_PROMPT),
     MessagesPlaceholder(variable_name="history"),
 ])
 
@@ -111,9 +70,15 @@ async def chat(request: ChatRequest):
             elif msg.role == "assistant":
                 history.append(AIMessage(content=msg.content))
         
-        # Create chain and invoke
+        # Use context from frontend if provided, otherwise use empty context
+        context = request.context or "No context provided."
+        
+        # Create chain and invoke with context
         chain = prompt | llm
-        response = chain.invoke({"history": history})
+        response = chain.invoke({
+            "history": history,
+            "context": context
+        })
         
         return {"content": response.content}
     

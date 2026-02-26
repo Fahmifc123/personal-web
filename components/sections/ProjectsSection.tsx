@@ -59,7 +59,7 @@ export function ProjectsSection({ limit, isHomePage = false }: { limit?: number;
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {["All", "Machine Learning", "AI", "NLP", "Computer Vision", "Data Science"].map((type) => (
+          {["All", "Data Engineering", "Machine Learning", "AI", "NLP", "Computer Vision", "Data Science"].map((type) => (
             <button
               key={type}
               type="button"

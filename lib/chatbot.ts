@@ -1,3 +1,7 @@
+import { projects } from "./projects";
+import { teachingHighlights } from "./teaching";
+import { getCVContext } from "./cv-data";
+
 export type ChatRole = "user" | "assistant";
 
 export interface ChatMessage {
@@ -15,15 +19,107 @@ const personaIntro =
 // Python Backend URL via ngrok (HTTPS)
 const PYTHON_BACKEND_URL = "https://7a31-43-134-70-75.ngrok-free.app";
 
+// Experience data
+const experiences = [
+  {
+    role: "HEAD OF DATA SCIENCE",
+    company: "NOLIMIT INDONESIA",
+    location: "BANDUNG, INDONESIA",
+    dateRange: "APR 2022 - PRESENT",
+    description: "Currently leading the data science team (Jul 2024 - Present) in managing AI & NLP projects like Sentiment Analysis, NER, and Chatbots. Previously served as a Data Scientist (Apr 2022 - Jul 2024) implementing AI pipelines with RAG and Deep Learning frameworks."
+  },
+  {
+    role: "FREELANCE TRAINER & MENTOR",
+    company: "FREELANCE",
+    location: "REMOTE & SEASONAL",
+    dateRange: "JAN 2019 - PRESENT",
+    description: "Delivered 350+ training sessions on AI, Machine Learning, and NLP for professionals and corporate clients like Bank Danamon, Toyota, PLN, and Freeport. Built and delivered AI Programming & Data Science curricula for Bootcamps and Job Ready programs."
+  },
+  {
+    role: "MENTOR AI & DATA SCIENCE",
+    company: "SKILVUL (KAMPUS MERDEKA BATCH 6)",
+    location: "REMOTE",
+    dateRange: "JAN 2024 - JUN 2024",
+    description: "Mentored students in AI Programming & NLP projects under Kampus Merdeka Batch 6 (Skilvul x IBM)."
+  },
+  {
+    role: "DATA SCIENCE FACILITATOR",
+    company: "BINAR ACADEMY",
+    location: "REMOTE",
+    dateRange: "SEP 2022 - SEP 2023",
+    description: "Facilitated Data Science bootcamps for B2B and B2C programs, including Digitalent Kominfo and corporate partners like PT. Bayer Indonesia."
+  },
+  {
+    role: "LEAD DATA SCIENTIST",
+    company: "KEBUN PINTAR",
+    location: "REMOTE",
+    dateRange: "JAN 2021 - MAR 2022",
+    description: "Led data science initiatives for agricultural technology solutions."
+  },
+  {
+    role: "DATA SCIENTIST",
+    company: "PT BANK MANDIRI (PERSERO) TBK",
+    location: "REMOTE",
+    dateRange: "NOV 2021 - DEC 2021",
+    description: "Worked on the Talent Score Card project in collaboration with Setneg."
+  },
+  {
+    role: "DATA SCIENTIST",
+    company: "TELKOM INDONESIA (DDB)",
+    location: "BANDUNG, INDONESIA",
+    dateRange: "AUG 2020 - JAN 2021",
+    description: "Developed Emerging Topic Recommendation systems within the Digital Business Directorate."
+  }
+];
+
+// Generate comprehensive context from all website data
+export function getFullWebsiteContext(): string {
+  const projectContext = projects.map((p) => `
+PROJECT: ${p.title}
+Type: ${p.type}
+Business Problem: ${p.businessProblem}
+Data Scale: ${p.dataScale}
+Approach: ${p.modelApproach}
+Impact: ${p.outcomeImpact}
+Tools: ${p.toolsStack.join(", ")}
+`).join("\n---\n");
+
+  const teachingContext = teachingHighlights.map((t) => `
+- ${t.label}: ${t.description}
+`).join("\n");
+
+  const experienceContext = experiences.map((e) => `
+${e.role} at ${e.company} (${e.dateRange})
+Location: ${e.location}
+Description: ${e.description}
+`).join("\n---\n");
+
+  return `
+${getCVContext()}
+
+=== DETAILED PROJECTS ===
+${projectContext}
+
+=== TEACHING & MENTORING ===
+${teachingContext}
+
+=== FULL WORK EXPERIENCE ===
+${experienceContext}
+`;
+}
+
 export async function getAIChatReply(messages: { role: string; content: string }[]): Promise<string> {
   try {
+    // Get full website context
+    const websiteContext = getFullWebsiteContext();
+    
     // Direct connection to Python backend via ngrok HTTPS
     const response = await fetch(`${PYTHON_BACKEND_URL}/chat`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ messages }),
+      body: JSON.stringify({ messages, context: websiteContext }),
     });
 
     if (!response.ok) {

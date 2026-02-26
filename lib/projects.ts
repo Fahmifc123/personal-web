@@ -1,4 +1,4 @@
-export type ProjectType = "Machine Learning" | "AI" | "NLP" | "Computer Vision" | "Data Science";
+export type ProjectType = "Machine Learning" | "AI" | "NLP" | "Computer Vision" | "Data Science" | "Data Engineering";
 
 export interface Project {
   id: string;
@@ -13,6 +13,39 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    id: "realtime-nlp-data-platform",
+    type: "Data Engineering",
+    title: "Real-Time NLP Data Platform for Social Media Analytics",
+    businessProblem: "Perusahaan membutuhkan sistem yang mampu mengolah jutaan data social media secara real-time untuk menghasilkan insight sentiment, emotion, dan language detection yang langsung tersedia di dashboard monitoring.",
+    dataScale: "Jutaan data per hari dari multiple API sources (social media & online media).",
+    modelApproach: "Membangun end-to-end data pipeline: API ingestion → AI inference service (sentiment/emotion/language detection) → Kafka streaming → Elasticsearch → Real-time dashboard. Arsitektur dirancang untuk horizontal scaling dan fault tolerance.",
+    outcomeImpact: "Pipeline mampu memproses data dalam hitungan detik dari ingestion hingga tampil di dashboard, mendukung multi-tenant clients, dan memungkinkan monitoring real-time untuk decision making.",
+    toolsStack: ["Python", "Apache Kafka", "FastAPI", "Elasticsearch", "ONNX Runtime", "Docker", "GPU", "Redis"],
+    link: "/projects/realtime-nlp-data-platform"
+  },
+  {
+    id: "mlops-auto-retrain",
+    type: "Data Engineering",
+    title: "MLOps Pipeline: Automated Model Retraining & Deployment",
+    businessProblem: "Model sentiment analysis mengalami degradasi akurasi seiring waktu karena data drift. Tim ML membutuhkan sistem yang dapat secara otomatis mendeteksi penurunan performa, re-train dengan data baru, dan melakukan deployment hanya jika model lebih baik dari versi sebelumnya.",
+    dataScale: "Ribuan sampel baru per minggu untuk continuous training dan model evaluation.",
+    modelApproach: "Membangun MLOps pipeline dengan fitur: automated data ingestion → model training → accuracy comparison → conditional deployment. Sistem membandingkan akurasi model baru vs model production, dan hanya melakukan deployment jika akurasi meningkat. Model registry digunakan untuk versioning dan rollback capability.",
+    outcomeImpact: "Model selalu up-to-date dengan data terbaru, akurasi meningkat 15% dalam 3 bulan, dan deployment risk berkurang karena adanya accuracy gate sebelum promote ke production.",
+    toolsStack: ["Python", "MLflow", "FastAPI", "Docker", "Kubernetes", "GitHub Actions", "PostgreSQL", "ONNX"],
+    link: "/projects/mlops-auto-retrain"
+  },
+  {
+    id: "multi-source-web-scraper",
+    type: "Data Engineering",
+    title: "Multi-Source Web Data Collection Pipeline",
+    businessProblem: "Tim data dan analytics membutuhkan data dari berbagai sumber publik (e-commerce, news portal, image repositories) untuk analisis market research, sentiment monitoring, dan content aggregation. Pengumpulan manual tidak scalable dan rawan error.",
+    dataScale: "Puluhan hingga ratusan ribu records dari multiple sources (Shopee reviews, Kompas articles, Unsplash images).",
+    modelApproach: "Membangun modular web scraping framework menggunakan Selenium dengan fitur: dynamic element detection, anti-bot handling, data validation layer, dan automated scheduling. Output di-standardisasi ke format CSV/Parquet untuk downstream analytics.",
+    outcomeImpact: "Framework mengurangi waktu collection dari hari menjadi jam, meningkatkan data quality melalui validation layer, dan mendukung penambahan data source baru dengan minimal code changes.",
+    toolsStack: ["Python", "Selenium", "Pandas", "BeautifulSoup", "Docker", "CSV", "Parquet"],
+    link: "/projects/multi-source-web-scraper"
+  },
   {
     id: "sentiment-absa-engine",
     type: "NLP",
