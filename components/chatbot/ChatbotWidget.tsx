@@ -18,12 +18,6 @@ export function ChatbotWidget() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  // Auto-scroll to bottom when messages change
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
 
   useEffect(() => {
     const handler = () => setIsOpen(true);
@@ -108,7 +102,6 @@ export function ChatbotWidget() {
                 Fahmi AI sedang menyusun jawaban...
               </p>
             )}
-            <div ref={messagesEndRef} />
           </div>
 
           <form

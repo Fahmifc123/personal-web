@@ -23,12 +23,6 @@ export default function AskAIPage() {
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  // Auto-scroll to bottom when messages change
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, isLoading]);
 
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -162,7 +156,6 @@ export default function AskAIPage() {
               </div>
             </div>
           )}
-          <div ref={messagesEndRef} />
         </div>
       </div>
 
