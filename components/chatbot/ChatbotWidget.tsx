@@ -99,7 +99,7 @@ export function ChatbotWidget() {
             </button>
           </div>
 
-          <div className="flex max-h-[320px] flex-col gap-3 overflow-y-auto px-4 py-3">
+          <div className="flex max-h-[320px] flex-col gap-3 overflow-y-auto px-4 py-3 scrollbar-hide [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
             {messages.map((msg) => (
               <ChatMessage key={msg.id} message={msg} />
             ))}
