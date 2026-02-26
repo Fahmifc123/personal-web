@@ -1,8 +1,8 @@
 export const teachingHighlights = [
   {
-    id: "intelligo-id",
-    label: "Intelligo ID",
-    description: "Head of L&D, membangun kurikulum AI Programming & Data Science untuk Bootcamp dan Job Ready program."
+    id: "freelance-trainer",
+    label: "Freelance Trainer & Mentor",
+    description: "Mengajar dan mentoring secara freelance untuk Data Science & AI di berbagai platform dan perusahaan."
   },
   {
     id: "corporate-training",

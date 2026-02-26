@@ -29,16 +29,7 @@ const experiences: Experience[] = [
     company: "FREELANCE",
     location: "REMOTE & SEASONAL",
     dateRange: "JAN 2019 - PRESENT",
-    description: "Delivered 350+ training sessions on AI, Machine Learning, and NLP for professionals and corporate clients like Bank Mandiri, Toyota, and PLN. Specialized in AI model building and deployment using Python and FastAPI.",
-  },
-  {
-    id: "intelligo",
-    role: "HEAD OF LEARNING & DEVELOPMENT",
-    company: "INTELLIGO ID",
-    location: "REMOTE",
-    dateRange: "JAN 2022 - PRESENT",
-    description: "Built and delivered AI Programming & Data Science curricula for Bootcamps and Job Ready programs. Created hands-on modules on AI model development, NLP applications, and end-to-end AI projects.",
-    link: "https://intelligo.id"
+    description: "Delivered 350+ training sessions on AI, Machine Learning, and NLP for professionals and corporate clients like Bank Danamon, Toyota, PLN, and Freeport. Built and delivered AI Programming & Data Science curricula for Bootcamps and Job Ready programs, creating hands-on modules on AI model development, NLP applications, and end-to-end AI projects.",
   },
   {
     id: "skilvul",

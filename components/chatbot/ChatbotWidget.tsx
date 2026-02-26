@@ -12,7 +12,7 @@ export function ChatbotWidget() {
       id: "welcome",
       role: "assistant",
       content:
-        "Halo, saya Ask Fahmi AI. Saya versi AI dari Muhammad Fahmi — Head of Data Scientist, Data Scientist & AI & NLP Engineer, sekaligus trainer dan mentor freelance. Silakan tanya soal peran, project NLP & automation, pengalaman mengajar, atau program Intelligo ID.",
+        "Halo, saya Ask Fahmi AI. Saya versi AI dari Muhammad Fahmi — Head of Data Scientist, Data Scientist & AI & NLP Engineer, sekaligus trainer dan mentor freelance untuk Data Science & AI. Silakan tanya soal peran, project NLP & automation, atau pengalaman mengajar.",
       createdAt: Date.now(),
     },
   ]);

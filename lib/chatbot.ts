@@ -117,13 +117,13 @@ export async function getChatbotReply(userMessage: string): Promise<string> {
     text.includes("mentoring") ||
     text.includes("kelas") ||
     text.includes("bootcamp") ||
-    text.includes("intelligo")
+    text.includes("training")
   ) {
     return (
       personaIntro +
       " " +
-      "Sebagai mentor dan pengajar, saya mendesain kelas dan program yang mendekati situasi nyata di industri. " +
-      "Di Intelligo ID, peserta tidak hanya belajar teori, tetapi juga membangun project dan portofolio yang bisa mereka jelaskan dengan percaya diri. " +
+      "Sebagai mentor dan pengajar freelance, saya mendesain kelas dan program yang mendekati situasi nyata di industri. " +
+      "Saya telah membawakan 350+ sesi training untuk berbagai perusahaan seperti Bank Danamon, Toyota, PLN, dan Freeport. " +
       "Pendekatan saya biasanya: mulai dari pondasi (Python, SQL, pemahaman data), lalu masuk ke modelling dan deployment bertahap, " +
       "dengan review dan diskusi yang jujur namun tetap suportif."
     );
@@ -132,12 +132,12 @@ export async function getChatbotReply(userMessage: string): Promise<string> {
   if (
     text.includes("kurikulum") ||
     text.includes("silabus") ||
-    (text.includes("bootcamp") && text.includes("intelligo"))
+    (text.includes("bootcamp") && text.includes("data"))
   ) {
     return (
       personaIntro +
       " " +
-      "Secara garis besar, kurikulum bootcamp di Intelligo ID biasanya mencakup: " +
+      "Secara garis besar, kurikulum yang saya desain untuk training Data Science biasanya mencakup: " +
       "fundamental Python dan pengolahan data, SQL dan analisis di level database, " +
       "pengenalan statistik dan machine learning, hingga project end-to-end yang melibatkan problem bisnis, " +
       "data exploration, modelling, dan penyajian hasil. " +
@@ -175,23 +175,13 @@ export async function getChatbotReply(userMessage: string): Promise<string> {
     );
   }
 
-  if (text.includes("program") && text.includes("intelligo")) {
-    return (
-      personaIntro +
-      " " +
-      "Di Intelligo ID, ada beberapa jenis program: bootcamp intensif, job ready program, dan corporate training. " +
-      "Tujuannya membantu peserta membangun fondasi yang kuat, menghasilkan portofolio yang masuk akal, dan mengerti ekspektasi perusahaan terhadap role data. " +
-      "Jika Anda ceritakan sedikit background dan tujuan Anda, saya bisa bantu memberi saran program atau jalur belajar yang lebih relevan."
-    );
-  }
-
   return (
     personaIntro +
     " " +
     "Saat ini versi demo Ask Fahmi AI menggunakan jawaban berbasis pola, " +
     "jadi mungkin belum selalu tepat dengan konteks spesifik Anda. " +
     "Coba jelaskan: apakah Anda ingin tahu tentang peran Head of Data Science, " +
-    "contoh project NLP & automation, pengalaman mengajar, detail program Intelligo ID, " +
+    "contoh project NLP & automation, pengalaman mengajar dan mentoring, " +
     "atau rekomendasi jalur belajar Data Science untuk kondisi Anda saat ini?"
   );
 }

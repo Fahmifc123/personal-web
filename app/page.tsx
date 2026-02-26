@@ -3,7 +3,6 @@ import { AboutSection } from "@/components/sections/AboutSection";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
 import { TeachingSection } from "@/components/sections/TeachingSection";
-import { IntelligoSection } from "@/components/sections/IntelligoSection";
 import { ContactSection } from "@/components/sections/ContactSection";
 
 export default function HomePage() {
@@ -14,7 +13,6 @@ export default function HomePage() {
       <ExperienceSection limit={2} isHomePage={true} />
       <ProjectsSection limit={4} isHomePage={true} />
       <TeachingSection />
-      <IntelligoSection />
       <ContactSection />
     </div>
   );
