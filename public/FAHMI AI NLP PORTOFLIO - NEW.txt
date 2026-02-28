@@ -1,0 +1,443 @@
+SYSTEM ONLINE
+PORTFOLIO & TECH
+MUHAMMAD 
+FAHMI
+DS / AI / NLP ENGINEER
+Portofolio berdasarkan pengalaman profesional selama ±5 tahun di bidang AI dan NLP.
+Production ML
+Distributed Processing
+NLP 
+Observability
+CORE OBJECTIVE
+Fokus: pada desain arsitektur, reliability, dan hasil sistem di production.
+
+Link Personal Website & Portfolio: https://fahmi.vercel.app/ 
+UPTIME: 99.9%
+SCALE: AUTO
+99.9%
+AUTO
+PORTFOLIO.SYS
+1
+
+PHILOSOPHY.LOG 
+ SYSTEM_INTEGRITY: CHECKING...
+System > Model
+ "Saya tidak fokus membuat model paling kompleks. Saya fokus membuat sistem yang tetap benar saat realitas tidak ideal." 
+ DETECTED FAILURE MODES 
+ERR_01: DRIFT
+Perubahan distribusi data
+ERR_02: INPUT
+Input tidak terstruktur / tidak valid
+ERR_03: USAGE
+Asumsi sistem dilanggar oleh user
+ERR_04: INFRA
+Gangguan performa dan timeout
+Engineering Lifecycle
+PIPELINE STATUS: ACTIVE
+FRAMEWORK_V2.0
+STATUS: OPERATIONAL
+OPERATIONAL
+01
+Problem
+Mendefinisikan masalah operasional yang perlu diselesaikan.
+02
+Signal
+Identifikasi data yang valid 
+dan noise.
+03
+Model
+Komponen prediksi untuk mendukung pengambilan keputusan.
+04
+System
+Integrasi, API, dan Production
+05
+Monitoring
+Observability terhadap perilaku input, output, dan anomali.
+06
+Feedback
+Loop perbaikan otomatis dan manual.
+2
+
+PROJECT CASE STUDY_01
+REAL-TIME NLP PLATFORM
+Kafka 
+FastAPI 
+Redis 
+Elasticsearch 
+Python 
+SYSTEM_ARCHITECTURE
+STATUS: LIVE
+ Streaming Event-Driven 
+ Tenant Isolation 
+ Time-Window Aggregation 
+ENGINEERING CHALLENGES 
+Data masuk tidak berurutan sehingga agregasi berbasis waktu harus tetap konsisten.
+Lonjakan percakapan mendadak berpotensi membebani worker secara bersamaan.
+SOLUTION APPROACH
+Consistency
+Latency
+Event-driven processing untuk respons cepat terhadap perubahan percakapan
+Load distribution antar worker untuk mencegah bottleneck saat spike
+Time-window aggregation untuk mengurangi noise dan false alert
+OPERATIONAL IMPACT 
+Visibilitas situasi publik meningkat secara real-time
+Pengambilan keputusan menjadi lebih proaktif
+Risiko eskalasi isu dapat ditekan lebih awal
+ OPERATIONAL PROBLEM 
+Respons terhadap opini publik sangat bergantung pada ketepatan waktu. Informasi yang terlambat membuat keputusan menjadi kurang relevan.
+ NAIVE APPROACH FAILURE 
+Pendekatan laporan periodik menyebabkan isu baru teridentifikasi saat situasi sudah berkembang.
+SOURCE
+KAFKA
+WORKERS
+AGGREGATE
+ALERT
+3
+
+PROJECT CASE STUDY_02
+ABSA SENTIMENT ENGINE
+PyTorch 
+Transformers 
+ONNX 
+FastAPI 
+PIPELINE_FLOW
+MODEL: ASPECT-BASED
+ Multi-Entity 
+Aspect-level decision
+Calibrated prediction
+ENGINEERING CHALLENGES 
+Multi-entity dalam satu kalimat menyulitkan pemetaan sentiment ke target yang tepat
+Bahasa informal & ironi parsial menurunkan akurasi klasifikasi
+SOLUTION APPROACH
+Flexibility
+Consistency
+Fine-tuned IndoBERT (HuggingFace) untuk klasifikasi sentiment per-aspect
+Input dipasangkan (aspect, text) agar model memahami target opini
+Probabilistic calibration + confidence threshold untuk menjaga konsistensi prediksi
+OPERATIONAL IMPACT 
+Fine-tuned IndoBERT (HuggingFace) untuk klasifikasi sentiment per-aspect
+Input dipasangkan (aspect, text) agar model memahami target opini
+Probabilistic calibration + confidence threshold untuk menjaga konsistensi prediksi
+ OPERATIONAL PROBLEM 
+Satu kalimat dapat mengandung opini berbeda terhadap beberapa entitas, sehingga label tunggal tidak cukup merepresentasikan makna sebenarnya.
+
+Contoh
+“Aplikasinya cepat, tapi CS-nya lama respon.”
+ NAIVE APPROACH FAILURE 
+Sentimen general (klasifikasi satu data/artikel) 
+membuat insight tidak bisa ditindaklanjuti karena menggabungkan aspect A dan aspect B menjadi satu skor sentiment.
+TEXT
+ASPECT EXTRACTION
+INDOBERT SENTIMENT CLASSIFIER
+CONFIDENCE FILTERING
+4
+
+PROJECT CASE STUDY_03
+LANGUAGE ROUTING FILTER
+TFLite
+FastAPI 
+Python 
+EARLY_EXIT_PIPELINE
+STATUS: OPTIMIZED
+ Early Exit 
+ CPU-Based Check 
+ High Throughput 
+ENGINEERING CHALLENGES 
+Short text (1-2 kata) sering tidak memiliki fitur bahasa yang cukup untuk klasifikasi akurat.
+Dominasi emoji dan slang dalam data sosmed mempersulit deteksi bahasa baku.
+SOLUTION APPROACH
+Recall (Coverage)
+Efficiency
+Menggunakan Google Language Detector (TFLite) sebagai detect language berbasis CPU
+Routing hanya bahasa yang sesuai konteks proyek (misal: Indonesia) ke model NLP utama
+Early-exit pipeline untuk mencegah inference model berat pada data tidak relevan
+OPERATIONAL IMPACT 
+Model utama hanya memproses bahasa relevan dengan project
+Beban komputasi model NLP berat berkurang signifikan
+Pipeline lebih stabil pada volume data tinggi
+ OPERATIONAL PROBLEM 
+Sebagian data masuk tidak relevan dengan konteks proyek (misalnya bahasa asing), namun tetap diproses oleh model utama yang berat.
+ NAIVE APPROACH FAILURE 
+Filter dilakukan di akhir pipeline. Akibatnya, resource mahal (GPU) sudah terbuang untuk memproses data sampah sebelum akhirnya dibuang.
+DROP (Non-Target Language)
+PROCESS (Target Language)
+TEXT
+TFLITE LANGUAGE DETECTOR
+ROUTE
+5
+
+PROJECT CASE STUDY_04
+CLUSTERING & SNA ENGINE
+BertTopic
+ LLM API
+NetworkX 
+Python 
+PIPELINE_FLOW
+METHOD: HYBRID
+ Semantic Density 
+ Actor Relations 
+ Topic Mapping 
+ENGINEERING CHALLENGES 
+Cluster berubah seiring waktu
+Noise percakapan tinggi menyebabkan data un-cluster
+SOLUTION APPROACH
+Coverage
+Precision
+BERTopic (HDBSCAN) untuk menemukan cluster percakapan tanpa label
+LLM (LangChain + OpenAI) memberi nama topik tiap cluster
+Social Network Analysis untuk menemukan komunitas interaksi
+LLM merangkum pembahasan utama tiap komunitas
+OPERATIONAL IMPACT 
+Topik pembicaraan publik dapat dipahami tanpa membaca manual
+Komunitas dan fokus diskusinya teridentifikasi otomatis
+Insight dapat dicari dalam hitungan menit
+ OPERATIONAL PROBLEM 
+Data percakapan besar sulit dianalisis secara manual, sehingga diperlukan ekstraksi topik dan pemahaman komunitas secara otomatis.
+ NAIVE APPROACH FAILURE 
+Visualisasi graph tanpa struktur hanya menghasilkan visual yang kusut dan tidak bermakna. Analis tidak bisa membedakan noise dari komunitas.
+EMBEDDING
+INDOBERT
+CLUSTERING
+COMMUNITY
+NARRATIVE TOPIC INSIGHT
+6
+
+PROJECT CASE STUDY_05
+AUTOMATED REPORT GENERATION
+Airflow 
+LLM API 
+Custom Report 
+GENERATION_PIPELINE
+STATUS: ACTIVE
+ LLM Logic 
+ Constrained Reasoning 
+Custom Report
+ENGINEERING CHALLENGES 
+Hallucination: Memastikan LLM tidak mengarang angka yang tidak ada di data input.
+Format Stability: Output JSON dari LLM sering rusak (malformed) sehingga gagal di parsing.
+SOLUTION APPROACH
+Creativity
+Consistency
+Data dikirim oleh DS dalam bentuk JSON/API terstruktur
+Rule-based insight extraction menentukan poin analisis
+LLM digunakan hanya untuk penyusunan narasi
+Engine menghasilkan dokumen PPT/PDF otomatis
+OPERATIONAL IMPACT 
+Analist fokus pada interpretasi, bukan penulisan laporan
+Laporan harian dapat dihasilkan otomatis dan konsisten
+Integrasi langsung dengan Dashboard / Product
+ OPERATIONAL PROBLEM 
+Laporan operasional harian perlu dikirim ke klien dalam format presentasi, namun proses penyusunan masih manual.
+ NAIVE APPROACH FAILURE 
+Menggunakan template statis tidak fleksibel terhadap variasi data, sementara penggunaan LLM bebas menghasilkan format tidak konsisten dan angka tidak terkontrol.
+DATA SOURCE
+INSIGHT ENGINE
+LLM STRUCTURING
+CUSTOM REPORT (PPT/PDF)
+7
+
+PROJECT CASE STUDY_06
+HYBRID ML + LLM VERIFICATION
+IndoBERT
+LLM API 
+FastAPI 
+HYBRID_REASONING_FLOW
+STATUS: OPTIMIZED
+ Cost Efficient 
+ High Precision 
+ Scalable Design 
+ENGINEERING CHALLENGES 
+Menentukan ambang batas (threshold) confidence score yang tepat untuk memicu eskalasi ke LLM tanpa over-triggering.
+Mengelola latensi tambahan saat fallback ke LLM agar tidak memblokir proses utama.
+SOLUTION APPROACH
+Simplicity
+Complexity
+Model ML menangani mayoritas kasus secara real time
+Confidence threshold menentukan kasus ambigu / anomali
+Hanya prediksi ber-confidence rendah diverifikasi oleh LLM
+OPERATIONAL IMPACT 
+±80% data diproses oleh model cepat
+±20% kasus kompleks diverifikasi LLM
+Akurasi meningkat tanpa lonjakan biaya
+ OPERATIONAL PROBLEM 
+Model ML cukup akurat untuk kasus umum, namun gagal pada kalimat ambigu, sarkasme, dan konteks implisit.
+ NAIVE APPROACH FAILURE 
+Menggunakan LLM (seperti GPT-4) untuk memproses semua data sangat mahal dan memiliki latensi tinggi yang tidak praktis untuk skala besar.
+INPUT
+MODEL
+CONFIDENCE CHECK
+LLM VERIFY (LOW CONFIDENCE FROM MODEL)
+RESULT
+8
+
+PROJECT CASE STUDY_07
+MLOPS AUTO RETRAIN
+Airflow 
+MLflow 
+ Docker 
+SSH
+RETRAINING_PIPELINE
+STATUS: ACTIVE
+ Drift Triggered 
+ Auto Evaluation 
+Auto Re-Train Model
+ENGINEERING CHALLENGES 
+Label ground truth sering terlambat (delayed feedback), membuat deteksi drift akurasi menjadi sulit.
+Menentukan threshold drift yang tepat agar tidak terlalu sensitif atau terlalu lambat.
+SOLUTION APPROACH
+Deploy Speed
+Safety
+Monitoring distribusi data untuk mendeteksi drift
+Retrain hanya ketika drift terdeteksi
+Validasi otomatis sebelum deployment
+OPERATIONAL IMPACT 
+Model tetap relevan tanpa monitoring manual
+Mengurangi risiko penurunan performa
+Update model lebih aman
+ OPERATIONAL PROBLEM 
+Performa model di produksi menurun seiring perubahan data meskipun akurasi metric terlihat stabil.
+ NAIVE APPROACH FAILURE 
+Retrain berkala (schedule-based) tidak mengikuti realitas. Kadang model diretrain padahal data stabil (boros), atau terlambat di retrain saat data berubah drastis.
+MONITOR
+DRIFT DETECT
+RETRAIN
+VALIDATE
+DEPLOY
+9
+
+PROJECT CASE STUDY_08
+NER & STATEMENT EXTRACTION
+IndoBERT
+Transformers 
+Entity DB 
+EXTRACTION_PIPELINE
+STATUS: ACTIVE
+ Entity Normalization 
+ Speaker
+ Quote Attribution 
+ENGINEERING CHALLENGES 
+Kutipan tidak selalu berdekatan dengan aktor.
+Menangani referensi implisit seperti "dia mengatakan" atau "pejabat itu membantah".
+SOLUTION APPROACH
+Coverage
+Precision
+Named Entity Recognition untuk identifikasi aktor
+Quote attribution untuk menentukan siapa mengatakan apa
+Entity normalization untuk konsistensi identitas
+OPERATIONAL IMPACT 
+Analisis narasi berbasis aktor dapat dilakukan otomatis
+Mendukung query seperti siapa mengatakan apa tentang siapa
+ OPERATIONAL PROBLEM 
+Analisis narasi membutuhkan identifikasi aktor dan pernyataannya, bukan hanya kata kunci.
+ NAIVE APPROACH FAILURE 
+NER standar menemukan nama, tetapi tidak memahami hubungan pernyataan antar aktor.
+TEXT
+NER
+SPEAKER & ROLE
+QUOTE / STATEMENT
+KAFKA
+10
+
+PROJECT CASE STUDY_09
+MEDIA SUMMARIZATION
+LLM 
+Vector Search 
+PIPELINE
+STATUS: PRODUCTION
+ Context Preservation 
+ Source Grounding 
+Summarization
+ENGINEERING CHALLENGES 
+Informasi antar sumber bisa saling bertentangan
+Latensi meningkat karena multi-step 
+SOLUTION APPROACH
+Speed (Latency)
+Reliability
+Deduplication & chunking untuk menghindari informasi berulang
+Retrieval (vector search) sebelum LLM untuk menjaga grounding sumber
+LLM menyusun ringkasan berbasis konteks dokumen
+OPERATIONAL IMPACT 
+Menghasilkan Summary data dengan cepat
+Mendukung pengambilan keputusan cepat
+ OPERATIONAL PROBLEM 
+Terlalu banyak artikel berita dan laporan yang masuk setiap hari melebihi kapasitas baca manual tim analis.
+ NAIVE APPROACH FAILURE 
+Ringkasan ekstraktif (memotong kalimat penting) sering kehilangan konteks nuansa dan menghasilkan informasi yang terpotong.
+DEDUPLICATE
+CHUNK
+RETRIEVE
+SUMMARIZE
+VERIFY
+11
+
+SYSTEM_INVENTORY.JSON
+TECH STACK
+INFRASTRUCTURE_BLUEPRINT
+PRODUCTION_READY
+CORE_ENGINE.ML
+ MACHINE LEARNING & NLP 
+PyTorch
+Deep Learning Framework
+Transformers
+Hugging Face
+spaCy & NLTK
+Industrial NLP
+ONNX
+Model Interchange
+scikit-learn
+Classic ML Algorithms
+RUNTIME.LANG
+ LANGUAGE 
+Python
+Primary (3.11+)
+Java / Scala
+Frontend/Node
+CLOUD.PROVIDER
+ CLOUD 
+AWS
+Notebook, SageMaker
+GCP
+Vertex AI, BigQuery
+DATA_PIPELINE.IO
+ DATA & STORE 
+Kafka
+Event Streaming
+Elasticsearch
+Search Engine
+Vector DB
+Qdrant / Faiss
+PostgreSQL
+Relational Data
+INFRA.OPS
+ INFRASTRUCTURE 
+Docker
+Containerization
+SSH pm2
+Orchestration
+Airflow
+Workflow Engine
+FastAPI
+High Perf API
+LLM
+LangChain
+OpenAI API
+12
+
+SYSTEM_SHUTDOWN_SEQUENCE_INITIATED
+TERIMA KASIH
+> Session terminated successfully.
+FINAL_MESSAGE.TXT 
+ "Mari berdiskusi tentang bagaimana membangun sistem AI yang reliable, scalable, dan memberikan impact nyata untuk bisnis kamu." 
+UPLOAD_COMPLETE
+100%
+PORTFOLIO_URL
+https://fahmi.vercel.app/ 
+DIRECT_MESSAGE
+mfahmipamungkas123@gmail.com
+WA : 081263299950
+NETWORK
+https://www.linkedin.com/in/muhammad-fahmi17/ 
+DISCONNECTED from SERVER_01
+LOG_ID: 2026-02-28-END
+ 2026 MUHAMMAD FAHMI. ALL SYSTEMS OPERATIONAL. 
+13
