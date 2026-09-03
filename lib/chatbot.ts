@@ -12,21 +12,25 @@ export interface ChatMessage {
 }
 
 const personaIntro =
-  "Saya Ask Fahmi AI, versi AI dari Muhammad Fahmi – Head of Data Scientist di NoLimit Indonesia, " +
+  "Saya Ask Fahmi AI, versi AI dari Muhammad Fahmi – Data & AI Mentor di Insignia, mantan Head of Data Science di NoLimit Indonesia, " +
   "Data Scientist, AI & NLP Engineer, sekaligus trainer dan mentor AI & Data Science secara freelance. " +
   "Saya akan menjawab dengan sudut pandang seorang praktisi dan pemimpin tim data.";
-
-// Python Backend URL via ngrok (HTTPS)
-const PYTHON_BACKEND_URL = "https://7a31-43-134-70-75.ngrok-free.app";
 
 // Experience data
 const experiences = [
   {
+    role: "DATA & AI MENTOR",
+    company: "INSIGNIA",
+    location: "WEST JAKARTA, INDONESIA (HYBRID)",
+    dateRange: "JUN 2026 - PRESENT",
+    description: "Driving talent transformation, curriculum development, and technical mentorship across Data Science, Data Engineering, AI, NLP & LLMs for multiple business units."
+  },
+  {
     role: "HEAD OF DATA SCIENCE",
     company: "NOLIMIT INDONESIA",
     location: "BANDUNG, INDONESIA",
-    dateRange: "APR 2022 - PRESENT",
-    description: "Currently leading the data science team (Jul 2024 - Present) in managing AI & NLP projects like Sentiment Analysis, NER, and Chatbots. Previously served as a Data Scientist (Apr 2022 - Jul 2024) implementing AI pipelines with RAG and Deep Learning frameworks."
+    dateRange: "APR 2022 - JUN 2026",
+    description: "Led the data science team (Jul 2024 - Jun 2026) in managing AI & NLP projects like Sentiment Analysis, NER, and Chatbots. Previously served as a Data Scientist (Apr 2022 - Jul 2024) implementing AI pipelines with RAG and Deep Learning frameworks."
   },
   {
     role: "FREELANCE TRAINER & MENTOR",
@@ -110,27 +114,28 @@ ${experienceContext}
 
 export async function getAIChatReply(messages: { role: string; content: string }[]): Promise<string> {
   try {
-    // Get full website context
-    const websiteContext = getFullWebsiteContext();
-    
-    // Direct connection to Python backend via ngrok HTTPS
-    const response = await fetch(`${PYTHON_BACKEND_URL}/chat`, {
+    // Calls our own Next.js API route (/api/chat), which talks to OpenAI
+    // server-side. No separate backend or tunnel required.
+    const response = await fetch("/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ messages, context: websiteContext }),
+      body: JSON.stringify({ messages }),
     });
 
+    const data = await response.json();
+
     if (!response.ok) {
-      throw new Error(`Backend error: ${response.status}`);
+      throw new Error(data?.error || `Chat API error: ${response.status}`);
     }
 
-    const data = await response.json();
-    return data.content;
+    return data.content as string;
   } catch (error) {
     console.error("Chat API Error:", error);
-    return "Maaf, sepertinya ada kendala teknis saat menghubungkan ke otak AI saya. Coba lagi nanti ya!";
+    // Fall back to the offline, pattern-based persona so the widget still responds.
+    const lastUserMessage = [...messages].reverse().find((m) => m.role === "user");
+    return getChatbotReply(lastUserMessage?.content ?? "");
   }
 }
 
