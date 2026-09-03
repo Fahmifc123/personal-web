@@ -18,7 +18,7 @@ export function AboutSection() {
           
           {/* Experience Badge */}
           <div className="absolute -bottom-6 -right-6 flex h-32 w-48 flex-col items-center justify-center rounded-2xl bg-primary p-4 shadow-xl">
-            <span className="text-4xl font-extrabold text-black">5+</span>
+            <span className="text-4xl font-extrabold text-black">6+</span>
             <span className="text-xs font-bold uppercase tracking-widest text-black/80">Years Experience</span>
           </div>
         </div>
@@ -34,7 +34,7 @@ export function AboutSection() {
 
           <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
             <p>
-              I’m Fahmi, an AI Leader and Data Scientist specializing in NLP, predictive modeling, and applied AI systems. Currently leading data science teams at NoLimit Indonesia, I focus on building scalable AI solutions that drive real business outcomes.
+              I’m Fahmi, an AI Leader and Data Scientist specializing in NLP, predictive modeling, and applied AI systems. Currently a Data & AI Mentor at Insignia, driving talent transformation and AI/NLP curriculum across business units — after 4+ years leading data science teams at NoLimit Indonesia, where I built scalable AI solutions that drove real business outcomes.
             </p>
             <p>
               Alongside my industry work, I am passionate about educating and mentoring data professionals. I’ve trained and mentored 7,000+ learners, including through corporate training programs, using practical, project-based approaches aligned with real-world needs.

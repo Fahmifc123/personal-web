@@ -23,11 +23,11 @@ const stats = [
 ];
 
 const corporateClients = [
-  "Bank Danamon", "Toyota Astra Motor", "Bayer", "PLN", "Freeport", "Jasa Marga", "Bank BSI", "Seabank"
+  "Bank Danamon", "Toyota Astra Motor", "Bayer", "PLN", "Freeport", "Jasa Marga", "Bank BSI", "Seabank Indonesia", "Bank Mandiri", "Telkom Indonesia", "Ortax"
 ];
 
 const academicPartners = [
-  "UI", "UGM", "IPB", "Atma Jaya", "UPN Yogyakarta", "ULBI"
+  "UI", "UGM", "IPB", "Atma Jaya", "UPN Yogyakarta", "ULBI", "Politeknik Madiun", "Politeknik Pos Indonesia"
 ];
 
 export function TeachingSection() {

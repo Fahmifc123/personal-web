@@ -71,8 +71,8 @@ export function HeroSection() {
             </h1>
 
             <p className="max-w-xl text-lg text-muted-foreground">
-              Head of Data Science at NoLimit Indonesia · AI & NLP Engineer <br />
-              Data Science Mentor at leading tech academies.
+              Data & AI Mentor at Insignia · AI & NLP Engineer <br />
+              Former Head of Data Science at NoLimit Indonesia · 350+ training sessions delivered.
             </p>
 
             <div className="flex flex-wrap gap-4">

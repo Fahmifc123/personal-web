@@ -18,29 +18,34 @@ Tools: ${p.toolsStack.join(", ")}
 
   const fullCVText = `
 MUHAMMAD FAHMI - CV DATA
-Current Role: Head of Data Scientist at NoLimit Indonesia (04/2022 - Present)
+Current Role: Data & AI Mentor at Insignia (06/2026 - Present)
+Previous Role: Head of Data Science at NoLimit Indonesia (04/2022 - 06/2026)
 Expertise: AI, NLP, Machine Learning, AI Programming.
 Contact: 081263299950 | mfahmipamungkas123@gmail.com
 
 PROFESSIONAL EXPERIENCE:
-1. NoLimit Indonesia (Head of Data Scientist): Leads projects in AI/NLP (Sentiment Analysis, Topic Modeling, NER, Chatbots, Automated Summarization). Uses BERT, LLMs, ONNX, RAG, Elasticsearch.
-2. Freelance Trainer & Mentor: Delivered 350+ training sessions for clients like Bank Danamon, Toyota, Bayer, PLN, Freeport. Active mentor for Data Science & AI programs.
-3. Mentoring: Skilvul (Kampus Merdeka Batch 6), Binar Academy, Startup Campus.
-4. Past Roles: Lead Data Scientist at Kebun Pintar, Data Scientist at Bank Mandiri, Telkom DDB.
+1. Insignia (Data & AI Mentor): Drives talent transformation, curriculum development, and technical mentorship across Data Science, Data Engineering, AI, NLP & LLMs for multiple business units.
+2. NoLimit Indonesia (Head of Data Science, 04/2022 - 06/2026): Led projects in AI/NLP (Sentiment Analysis, Topic Modeling, NER, Chatbots, Automated Summarization). Used BERT, LLMs, ONNX, RAG, Elasticsearch.
+3. Freelance Trainer & Mentor (2019 - Present): Delivered 350+ training sessions to 7,000+ participants for clients like Bank Danamon, Toyota Astra Motor, Bayer, PLN, Freeport, Jasa Marga, Bank BSI, Seabank Indonesia, Bank Mandiri, Telkom Indonesia, Ortax. Academic engagements: UI, UGM, IPB, Atma Jaya, UPN Yogyakarta, ULBI, Politeknik Madiun.
+4. Mentoring: Skilvul (Kampus Merdeka Batch 6 x IBM), Binar Academy, Startup Campus.
+5. Past Roles: Lead Data Scientist at Kebun Pintar, Data Scientist at Bank Mandiri, Telkom DDB.
 
 SKILLS:
-Python, NLP, Machine Learning, Deep Learning (PyTorch, TensorFlow), Model Deployment (FastAPI, ONNX), Chatbot & RAG Development.
+Python, NLP, Machine Learning, Deep Learning (PyTorch, TensorFlow), Model Deployment (FastAPI, ONNX), Chatbot & RAG Development, Curriculum Design.
 
 EDUCATION:
 Applied Bachelor Degree in Informatics Engineering, Politeknik Pos Indonesia (GPA: 3.54).
 
 CERTIFICATIONS:
 IBM Enterprise Data Science, Microsoft Certified Azure AI Fundamentals.
+
+PROJECT CONFIDENTIALITY:
+Most listed projects were delivered internally at NoLimit Indonesia under NDA. Business problem, architecture, and impact are shared with permission; proprietary source code and client data are not disclosed.
 `;
 
   return `
 SUMMARY:
-Muhammad Fahmi is an experienced Data Science leader focused on NLP and AI automation. He leads data teams to deliver production-grade AI solutions. He is also an active freelance trainer and mentor for Data Science & AI.
+Muhammad Fahmi is an experienced Data Science leader focused on NLP and AI automation, currently a Data & AI Mentor at Insignia after 4+ years leading data science teams at NoLimit Indonesia. He is also an active freelance trainer and mentor for Data Science & AI, with 350+ sessions delivered.
 
 DETAILED CV INFO:
 ${fullCVText}

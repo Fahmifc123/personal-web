@@ -4,6 +4,8 @@ export interface Project {
   id: string;
   title: string;
   type: ProjectType;
+  organization: string;
+  confidential: boolean;
   businessProblem: string;
   dataScale: string;
   modelApproach: string;
@@ -16,6 +18,8 @@ export const projects: Project[] = [
   {
     id: "realtime-nlp-data-platform",
     type: "Data Engineering",
+    organization: "NoLimit Indonesia",
+    confidential: true,
     title: "Real-Time NLP Platform with Kafka & Event-Driven Architecture",
     businessProblem: "Respons terhadap opini publik sangat bergantung pada ketepatan waktu. Informasi yang terlambat membuat keputusan menjadi kurang relevan. Pendekatan laporan periodik menyebabkan isu baru teridentifikasi saat situasi sudah berkembang.",
     dataScale: "Jutaan data per hari dari multiple API sources dengan lonjakan percakapan mendadak yang berpotensi membebani worker.",
@@ -27,6 +31,8 @@ export const projects: Project[] = [
   {
     id: "ai-report-generation",
     type: "Data Engineering",
+    organization: "NoLimit Indonesia",
+    confidential: true,
     title: "Automated Report Generation with LLM & Constrained Reasoning",
     businessProblem: "Laporan operasional harian perlu dikirim ke klien dalam format presentasi, namun proses penyusunan masih manual. Menggunakan template statis tidak fleksibel terhadap variasi data, sementara penggunaan LLM bebas menghasilkan format tidak konsisten dan angka tidak terkontrol (hallucination).",
     dataScale: "Ratusan report per bulan dengan berbagai format dan kompleksitas data.",
@@ -38,6 +44,8 @@ export const projects: Project[] = [
   {
     id: "mlops-auto-retrain",
     type: "Data Engineering",
+    organization: "NoLimit Indonesia",
+    confidential: true,
     title: "MLOps Auto-Retrain with Drift Detection & Auto Evaluation",
     businessProblem: "Performa model di produksi menurun seiring perubahan data meskipun akurasi metric terlihat stabil. Label ground truth sering terlambat (delayed feedback), membuat deteksi drift akurasi menjadi sulit. Retrain berkala (schedule-based) tidak mengikuti realitas - kadang boros saat data stabil, atau terlambat saat data berubah drastis.",
     dataScale: "Ribuan sampel baru per minggu untuk continuous monitoring dan drift detection.",
@@ -49,6 +57,8 @@ export const projects: Project[] = [
   {
     id: "multi-source-web-scraper",
     type: "Data Engineering",
+    organization: "NoLimit Indonesia",
+    confidential: true,
     title: "Multi-Source Web Data Collection Pipeline",
     businessProblem: "Tim data dan analytics membutuhkan data dari berbagai sumber publik (e-commerce, news portal, image repositories) untuk analisis market research, sentiment monitoring, dan content aggregation. Pengumpulan manual tidak scalable dan rawan error.",
     dataScale: "Puluhan hingga ratusan ribu records dari multiple sources (Shopee reviews, Kompas articles, Unsplash images).",
@@ -60,6 +70,8 @@ export const projects: Project[] = [
   {
     id: "sentiment-absa-engine",
     type: "NLP",
+    organization: "NoLimit Indonesia",
+    confidential: true,
     title: "Aspect-Based Sentiment Analysis (ABSA) Engine with IndoBERT",
     businessProblem: "Satu kalimat dapat mengandung opini berbeda terhadap beberapa entitas, sehingga label tunggal tidak cukup merepresentasikan makna sebenarnya. Contoh: 'Aplikasinya cepat, tapi CS-nya lama respon.' Sentimen general membuat insight tidak bisa ditindaklanjuti karena menggabungkan aspect A dan aspect B menjadi satu skor sentiment.",
     dataScale: "Ratusan ribu hingga jutaan data social media dan online media per bulan dengan multi-entity dalam satu kalimat.",
@@ -71,6 +83,8 @@ export const projects: Project[] = [
   {
     id: "language-detection-routing",
     type: "Machine Learning",
+    organization: "NoLimit Indonesia",
+    confidential: true,
     title: "Language Routing Filter with Early-Exit Pipeline (TFLite)",
     businessProblem: "Sebagian data masuk tidak relevan dengan konteks proyek (misalnya bahasa asing), namun tetap diproses oleh model utama yang berat. Filter dilakukan di akhir pipeline, sehingga resource mahal (GPU) sudah terbuang untuk memproses data sampah sebelum akhirnya dibuang.",
     dataScale: "Ratusan ribu data per bulan dari seluruh data masuk social & online media dengan dominasi emoji dan slang dalam data sosmed.",
@@ -82,6 +96,8 @@ export const projects: Project[] = [
   {
     id: "clustering-sna-dna-engine",
     type: "Data Science",
+    organization: "NoLimit Indonesia",
+    confidential: true,
     title: "Clustering & Social Network Analysis (SNA) Engine with LLM",
     businessProblem: "Data percakapan besar sulit dianalisis secara manual, sehingga diperlukan ekstraksi topik dan pemahaman komunitas secara otomatis. Visualisasi graph tanpa struktur hanya menghasilkan visual yang kusut dan tidak bermakna. Analis tidak bisa membedakan noise dari komunitas.",
     dataScale: "Puluhan hingga ratusan ribu data percakapan per periode analisis dengan cluster yang berubah seiring waktu dan noise percakapan tinggi.",
@@ -93,6 +109,8 @@ export const projects: Project[] = [
   {
     id: "automated-media-summarization",
     type: "AI",
+    organization: "NoLimit Indonesia",
+    confidential: true,
     title: "Automated Media Summarization Engine (Daily, WA, & Report)",
     businessProblem: "Pembuatan ringkasan manual dari ribuan data media setiap hari tidak efisien dan tidak konsisten.",
     dataScale: "Ratusan ribu data per hari dari social media dan online media.",
@@ -104,6 +122,8 @@ export const projects: Project[] = [
   {
     id: "sentiment-llm-verify",
     type: "AI",
+    organization: "NoLimit Indonesia",
+    confidential: true,
     title: "Hybrid ML + LLM Verification System with Confidence Threshold",
     businessProblem: "Model ML cukup akurat untuk kasus umum, namun gagal pada kalimat ambigu, sarkasme, dan konteks implisit. Menggunakan LLM (seperti GPT-4) untuk memproses semua data sangat mahal dan memiliki latensi tinggi yang tidak praktis untuk skala besar.",
     dataScale: "Subset data ambigu dari ratusan ribu data bulanan yang memerlukan eskalasi ke LLM.",
@@ -115,6 +135,8 @@ export const projects: Project[] = [
   {
     id: "ner-spokesperson-extraction",
     type: "NLP",
+    organization: "NoLimit Indonesia",
+    confidential: true,
     title: "NER & Statement Extraction with Entity Normalization",
     businessProblem: "Analisis narasi membutuhkan identifikasi aktor dan pernyataannya, bukan hanya kata kunci. Kutipan tidak selalu berdekatan dengan aktor, dan perlu menangani referensi implisit seperti 'dia mengatakan' atau 'pejabat itu membantah'. NER standar menemukan nama, tetapi tidak memahami hubungan pernyataan antar aktor.",
     dataScale: "Ratusan ribu artikel online media dan konten social media per bulan dengan complex quote attribution patterns.",
@@ -126,6 +148,8 @@ export const projects: Project[] = [
   {
     id: "media-summarization",
     type: "AI",
+    organization: "NoLimit Indonesia",
+    confidential: true,
     title: "Media Summarization with Vector Search & Context Preservation",
     businessProblem: "Terlalu banyak artikel berita dan laporan yang masuk setiap hari melebihi kapasitas baca manual tim analis. Ringkasan ekstraktif (memotong kalimat penting) sering kehilangan konteks nuansa dan menghasilkan informasi yang terpotong. Informasi antar sumber bisa saling bertentangan.",
     dataScale: "Ratusan ribu data per hari dari social media dan online media dengan multi-step processing latency.",

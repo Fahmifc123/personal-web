@@ -7,11 +7,12 @@ import {
   Cpu, 
   Layers, 
   TrendingUp, 
-  Wrench, 
+  Wrench,
   ChevronRight,
   ExternalLink,
   Code2,
-  Filter
+  Filter,
+  ShieldCheck
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -100,9 +101,18 @@ export function ProjectsSection({ limit, isHomePage = false }: { limit?: number;
                 </div>
               </div>
 
-              <h3 className="mb-4 text-2xl font-bold leading-tight group-hover:text-primary transition-colors">
+              <h3 className="mb-2 text-2xl font-bold leading-tight group-hover:text-primary transition-colors">
                 {project.title}
               </h3>
+
+              <div className="mb-4 flex items-center gap-2 text-[11px] font-semibold text-muted-foreground">
+                <span>{project.organization}</span>
+                {project.confidential && (
+                  <span className="inline-flex items-center gap-1 rounded-full border border-border px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
+                    <ShieldCheck size={11} className="text-primary" /> NDA Protected
+                  </span>
+                )}
+              </div>
 
               <div className="mb-8 space-y-6">
                 <div className="flex gap-4">

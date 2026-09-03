@@ -15,12 +15,20 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
+    id: "insignia",
+    role: "DATA & AI MENTOR",
+    company: "INSIGNIA",
+    location: "WEST JAKARTA, INDONESIA (HYBRID)",
+    dateRange: "JUN 2026 - PRESENT",
+    description: "Driving talent transformation, curriculum development, and technical mentorship across Data Science, Data Engineering, AI, NLP & LLMs for multiple business units, designing and delivering training programs that build technical capability across the organization.",
+  },
+  {
     id: "nolimit-combined",
     role: "HEAD OF DATA SCIENCE",
     company: "NOLIMIT INDONESIA",
     location: "BANDUNG, INDONESIA",
-    dateRange: "APR 2022 - PRESENT",
-    description: "Currently leading the data science team (Jul 2024 - Present) in managing AI & NLP projects like Sentiment Analysis, NER, and Chatbots. Previously served as a Data Scientist (Apr 2022 - Jul 2024) implementing AI pipelines with RAG and Deep Learning frameworks.",
+    dateRange: "APR 2022 - JUN 2026",
+    description: "Led the data science team (Jul 2024 - Jun 2026) in managing AI & NLP projects like Sentiment Analysis, Topic Modeling, NER, Chatbots, and Automated Summarization. Previously served as a Data Scientist (Apr 2022 - Jul 2024) implementing AI pipelines with BERT, LLMs, ONNX optimization and RAG for large-scale social media monitoring.",
     link: "https://nolimit.id"
   },
   {

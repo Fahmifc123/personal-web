@@ -10,7 +10,8 @@ import {
   Code2,
   Cpu,
   ArrowRight,
-  Zap
+  Zap,
+  ShieldCheck
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -46,15 +47,23 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
 
         {/* Header Section */}
         <header className="mb-16">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-primary">
-            <Cpu size={14} />
-            {project.type}
+          <div className="mb-4 flex flex-wrap items-center gap-2">
+            <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-primary">
+              <Cpu size={14} />
+              {project.type}
+            </div>
+            {project.confidential && (
+              <div className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                <ShieldCheck size={14} className="text-primary" />
+                NDA Protected — {project.organization}
+              </div>
+            )}
           </div>
           <h1 className="text-4xl font-black tracking-tight text-foreground md:text-6xl leading-tight">
             {project.title}
           </h1>
           <p className="mt-6 text-xl text-muted-foreground leading-relaxed max-w-3xl">
-            A comprehensive overview of the strategic implementation and real-world impact delivered through this initiative.
+            A comprehensive overview of the strategic implementation and real-world impact delivered through this initiative at {project.organization}.
           </p>
         </header>
 
@@ -584,10 +593,21 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                 <Briefcase size={14} /> Strategic Value
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Project ini merepresentasikan keahlian saya dalam membangun sistem AI yang tidak hanya akurat secara teknis, 
+                Project ini merepresentasikan keahlian saya dalam membangun sistem AI yang tidak hanya akurat secara teknis,
                 tetapi juga memiliki skalabilitas tinggi untuk kebutuhan operasional perusahaan.
               </p>
             </div>
+
+            {project.confidential && (
+              <div className="rounded-3xl border border-border bg-card p-8">
+                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-primary mb-4 flex items-center gap-2">
+                  <ShieldCheck size={14} /> Confidentiality Note
+                </h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  Delivered internally at {project.organization} under an NDA. The problem framing, architecture, and measured impact above are shared with permission; proprietary source code and client data are not disclosed.
+                </p>
+              </div>
+            )}
 
             <div className="rounded-3xl border border-border bg-card p-8">
               <h3 className="text-xs font-black uppercase tracking-[0.2em] text-primary mb-4">Data Scale</h3>
