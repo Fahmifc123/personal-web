@@ -53,7 +53,9 @@ export function HeroSection() {
 
   return (
     <section className="relative overflow-hidden bg-background pt-20 pb-16 md:pt-32 md:pb-24">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-[0.04]" />
+      <div className="pointer-events-none absolute -top-24 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]" />
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           {/* Left Column: Text Content */}
           <div className="space-y-8">

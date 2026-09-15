@@ -32,6 +32,15 @@ const experiences: Experience[] = [
     link: "https://nolimit.id"
   },
   {
+    id: "intelligo-id",
+    role: "LEAD TRAINER",
+    company: "INTELLIGO ID",
+    location: "INDONESIA (ONLINE, OFFLINE & HYBRID)",
+    dateRange: "2024 - PRESENT",
+    description: "Trainer utama di Intelligo ID, platform EduTech Data Science & AI, membawakan Corporate Training, Job Ready Bootcamp, dan Private Course 1-on-1 — mencakup AI & Generative AI, Machine Learning lanjutan, Data & Programming, hingga Business Intelligence untuk klien seperti Telkom Corporate University, AXA Mandiri, BPK PENABUR, dan IPB University.",
+    link: "https://intelligo.id"
+  },
+  {
     id: "freelance-trainer",
     role: "FREELANCE TRAINER & MENTOR",
     company: "FREELANCE",

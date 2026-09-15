@@ -25,10 +25,11 @@ Contact: 081263299950 | mfahmipamungkas123@gmail.com
 
 PROFESSIONAL EXPERIENCE:
 1. Insignia (Data & AI Mentor): Drives talent transformation, curriculum development, and technical mentorship across Data Science, Data Engineering, AI, NLP & LLMs for multiple business units.
-2. NoLimit Indonesia (Head of Data Science, 04/2022 - 06/2026): Led projects in AI/NLP (Sentiment Analysis, Topic Modeling, NER, Chatbots, Automated Summarization). Used BERT, LLMs, ONNX, RAG, Elasticsearch.
-3. Freelance Trainer & Mentor (2019 - Present): Delivered 350+ training sessions to 7,000+ participants for clients like Bank Danamon, Toyota Astra Motor, Bayer, PLN, Freeport, Jasa Marga, Bank BSI, Seabank Indonesia, Bank Mandiri, Telkom Indonesia, Ortax. Academic engagements: UI, UGM, IPB, Atma Jaya, UPN Yogyakarta, ULBI, Politeknik Madiun.
-4. Mentoring: Skilvul (Kampus Merdeka Batch 6 x IBM), Binar Academy, Startup Campus.
-5. Past Roles: Lead Data Scientist at Kebun Pintar, Data Scientist at Bank Mandiri, Telkom DDB.
+2. Intelligo ID (Lead Trainer, 2024 - Present): Lead Trainer at Intelligo ID, an EduTech platform for Data Science & AI — delivering Corporate Training, Job Ready Bootcamp, and 1-on-1 Private Courses covering AI & Generative AI, advanced Machine Learning, Data & Programming, and Business Intelligence for corporate clients such as Telkom Corporate University, AXA Mandiri, BPK PENABUR, Ortax, and IPB University.
+3. NoLimit Indonesia (Head of Data Science, 04/2022 - 06/2026): Led projects in AI/NLP (Sentiment Analysis, Topic Modeling, NER, Chatbots, Automated Summarization). Used BERT, LLMs, ONNX, RAG, Elasticsearch.
+4. Freelance Trainer & Mentor (2019 - Present): Delivered 350+ training sessions to 7,000+ participants for clients like Bank Danamon, Toyota Astra Motor, Bayer, PLN, Freeport, Jasa Marga, Bank BSI, Seabank Indonesia, Bank Mandiri, Telkom Indonesia, Ortax. Academic engagements: UI, UGM, IPB, Atma Jaya, UPN Yogyakarta, ULBI, Politeknik Madiun.
+5. Mentoring: Skilvul (Kampus Merdeka Batch 6 x IBM), Binar Academy, Startup Campus.
+6. Past Roles: Lead Data Scientist at Kebun Pintar, Data Scientist at Bank Mandiri, Telkom DDB.
 
 SKILLS:
 Python, NLP, Machine Learning, Deep Learning (PyTorch, TensorFlow), Model Deployment (FastAPI, ONNX), Chatbot & RAG Development, Curriculum Design.
