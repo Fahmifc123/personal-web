@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/sections/HeroSection";
+import { TrustedBySection } from "@/components/sections/TrustedBySection";
 import { AboutSection } from "@/components/sections/AboutSection";
 import { ExperienceSection } from "@/components/sections/ExperienceSection";
 import { ProjectsSection } from "@/components/sections/ProjectsSection";
@@ -9,6 +10,7 @@ export default function HomePage() {
   return (
     <div className="space-y-24 md:space-y-32">
       <HeroSection />
+      <TrustedBySection />
       <AboutSection />
       <ExperienceSection limit={2} isHomePage={true} />
       <ProjectsSection limit={4} isHomePage={true} />

@@ -6,13 +6,13 @@ import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://muhammad-fahmi.vercel.app"), // Fallback if domain is not set
-  title: "Muhammad Fahmi – Head of Data Scientist & AI Mentor",
+  title: "Muhammad Fahmi – Data & AI Mentor, AI/NLP Engineer, Trainer",
   description:
-    "Portfolio Muhammad Fahmi – Head of Data Scientist at NoLimit Indonesia, AI & NLP Engineer, and Mentor Data Science.",
+    "Portfolio Muhammad Fahmi – Data & AI Mentor at Insignia, Lead Trainer at Intelligo ID, former Head of Data Science at NoLimit Indonesia. AI & NLP Engineer with 350+ training sessions delivered.",
   openGraph: {
-    title: "Muhammad Fahmi – Head of Data Scientist & AI Mentor",
+    title: "Muhammad Fahmi – Data & AI Mentor, AI/NLP Engineer, Trainer",
     description:
-      "Portfolio Muhammad Fahmi – Head of Data Scientist at NoLimit Indonesia, AI & NLP Engineer, and Mentor Data Science.",
+      "Portfolio Muhammad Fahmi – Data & AI Mentor at Insignia, Lead Trainer at Intelligo ID, former Head of Data Science at NoLimit Indonesia. AI & NLP Engineer with 350+ training sessions delivered.",
     type: "website",
   },
 };
