@@ -12,7 +12,7 @@ export interface ChatMessage {
 }
 
 const personaIntro =
-  "Saya Ask Fahmi AI, versi AI dari Muhammad Fahmi – Data & AI Corporate Trainer & Mentor, mantan Head of Data Science di NoLimit Indonesia, " +
+  "Saya Ask Fahmi AI, versi AI dari Muhammad Fahmi – Data & AI Mentor di Insignia, mantan Head of Data Science di NoLimit Indonesia, " +
   "Data Scientist, AI & NLP Engineer, sekaligus trainer dan mentor AI & Data Science secara freelance. " +
   "Saya akan menjawab dengan sudut pandang seorang praktisi dan pemimpin tim data.";
 
@@ -25,32 +25,25 @@ export const suggestedQuestions = [
 // Experience data
 const experiences = [
   {
-    role: "FREELANCE DATA & AI TRAINER & MENTOR",
-    company: "FREELANCE",
-    location: "REMOTE & SEASONAL",
-    dateRange: "2019 - PRESENT",
-    description: "Delivered 350+ training sessions on AI Automation, Generative AI, Machine Learning, and NLP for professionals and corporate clients like Bank Danamon, Toyota, PLN, and Freeport. Built and delivered Data & AI curricula for bootcamps and job-ready programs."
+    role: "DATA & AI MENTOR",
+    company: "INSIGNIA",
+    location: "INDONESIA",
+    dateRange: "MAY 2026 - PRESENT",
+    description: "Drives talent transformation, curriculum development, and technical mentorship across Data Science, Data Engineering, AI, NLP, and LLMs for multiple business units."
   },
   {
-    role: "LEAD TRAINER",
-    company: "INTELLIGO ID",
-    location: "INDONESIA (ONLINE, OFFLINE & HYBRID)",
-    dateRange: "2024 - PRESENT",
-    description: "Lead Trainer at Intelligo ID, an EduTech platform for Data Science & AI, delivering Corporate Training, Job-Ready Bootcamps, and 1-on-1 Private Courses."
+    role: "FREELANCE, INSTRUCTOR, TRAINER & MENTOR",
+    company: "FREELANCE",
+    location: "REMOTE & SEASONAL",
+    dateRange: "JAN 2019 - PRESENT",
+    description: "Delivered 350+ training sessions on AI Programming, AI, Machine Learning, NLP, and Data Science for professionals, students, and executives, including enterprise programs on Building Enterprise AI Chatbots with LLM & RAG, and developer-track programs on LangChain, RAG, ReAct agents, n8n automation, multi-agent orchestration, and MLOps via PT Smartindo Manajemen Informatika."
   },
   {
     role: "HEAD OF DATA SCIENCE",
     company: "NOLIMIT INDONESIA",
     location: "BANDUNG, INDONESIA",
-    dateRange: "JUL 2024 - MAY 2026",
-    description: "Led the data science team managing AI & NLP projects like Sentiment Analysis, NER, and Chatbots."
-  },
-  {
-    role: "DATA SCIENTIST",
-    company: "NOLIMIT INDONESIA",
-    location: "BANDUNG, INDONESIA",
-    dateRange: "APR 2022 - JUL 2024",
-    description: "Implemented AI pipelines with RAG and Deep Learning frameworks for large-scale social media monitoring."
+    dateRange: "APR 2022 - JUN 2026",
+    description: "Led and managed team projects in AI, AI Programming, and NLP — Sentiment Analysis, Topic Modeling, NER, Chatbots, Statement Extraction, and Automated Summarization — using BERT, LLMs, ONNX optimization, RAG, and Elasticsearch for scalable social media monitoring."
   },
   {
     role: "MENTOR AI & DATA SCIENCE",

@@ -78,8 +78,8 @@ export function HeroSection() {
             </h1>
 
             <p className="max-w-xl text-lg text-muted-foreground">
-              Corporate Trainer &amp; Mentor in AI Automation, Generative AI, NLP, and Data Analytics.<br />
-              Former Head of Data Science · 350+ sessions · 7,000+ learners · 20+ companies.
+              Data &amp; AI Mentor at Insignia · Corporate Trainer &amp; Mentor in AI Programming, LLMs &amp; RAG.<br />
+              Former Head of Data Science at NoLimit Indonesia · 350+ sessions · 7,000+ learners · 20+ companies.
             </p>
 
             <div className="flex flex-wrap items-center gap-4">
