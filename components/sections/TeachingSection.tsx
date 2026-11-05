@@ -1,33 +1,21 @@
 "use client";
 
 import { teachingHighlights } from "@/lib/teaching";
-import { 
-  Users, 
-  GraduationCap, 
-  Presentation, 
-  Award,
-  BookOpen,
+import {
+  Users,
+  GraduationCap,
+  Presentation,
   CheckCircle2,
   Video,
   MapPin,
   Building2,
-  Users2
 } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 const stats = [
   { label: "Training Sessions", value: "350+", icon: Presentation },
-  { label: "Students & Professionals", value: "7,000+", icon: Users },
+  { label: "Learners & Professionals", value: "7,000+", icon: Users },
   { label: "Corporate Clients", value: "20+", icon: Building2 },
   { label: "Academic Partners", value: "10+", icon: GraduationCap },
-];
-
-const corporateClients = [
-  "Bank Danamon", "Toyota Astra Motor", "Bayer", "PLN", "Freeport", "Jasa Marga", "Bank BSI", "Seabank Indonesia", "Bank Mandiri", "Telkom Indonesia", "Ortax"
-];
-
-const academicPartners = [
-  "UI", "UGM", "IPB", "Atma Jaya", "UPN Yogyakarta", "ULBI", "Politeknik Madiun", "Politeknik Pos Indonesia"
 ];
 
 export function TeachingSection() {
@@ -49,15 +37,17 @@ export function TeachingSection() {
             id="teaching-heading"
             className="text-4xl font-extrabold tracking-tight text-foreground md:text-5xl"
           >
-            Membentuk Masa Depan <span className="text-primary">Talenta AI</span> Indonesia
+            Shaping Indonesia's <span className="text-primary">AI Talent</span>
           </h2>
-          
+
           <div className="mt-8 space-y-6 text-lg text-muted-foreground">
             <p>
-              Mengajar bagi saya adalah cara untuk memastikan industri tech di Indonesia memiliki talenta yang tidak hanya paham teori, tapi siap pakai di level produksi.
+              Teaching, for me, is how I make sure Indonesia's tech industry has talent that is not just
+              theory-aware, but production-ready.
             </p>
             <p>
-              Dengan pengalaman lebih dari <span className="text-foreground font-semibold">350 sesi training</span>, saya fokus pada pengajaran <span className="text-foreground font-semibold">AI Programming, Machine Learning, dan NLP</span> berbasis project nyata.
+              With over <span className="text-foreground font-semibold">350 training sessions</span> delivered,
+              I focus on teaching <span className="text-foreground font-semibold">AI Automation, Generative AI, Machine Learning, and NLP</span> through real, project-based work.
             </p>
           </div>
 
@@ -80,7 +70,7 @@ export function TeachingSection() {
               <div className="relative h-64 overflow-hidden rounded-2xl">
                 <img
                   src="/img/teaching-online.jpeg"
-                  alt="Online Teaching Session"
+                  alt="Online training session"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -98,7 +88,7 @@ export function TeachingSection() {
                 <div className="relative h-48 overflow-hidden rounded-2xl">
                   <img
                     src="/img/teaching-workshop.jpg"
-                    alt="Offline Workshop"
+                    alt="Offline workshop"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -113,7 +103,7 @@ export function TeachingSection() {
                 <div className="relative h-48 overflow-hidden rounded-2xl">
                   <img
                     src="/img/teaching-mentoring.jpg"
-                    alt="Mentoring Session"
+                    alt="Mentoring session"
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 grayscale group-hover:grayscale-0"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent" />
@@ -127,7 +117,7 @@ export function TeachingSection() {
             </div>
 
             <div className="rounded-3xl border border-border bg-primary/5 p-8">
-              <h4 className="mb-6 text-sm font-black uppercase tracking-widest text-primary">Program Mentoring Utama</h4>
+              <h4 className="mb-6 text-sm font-black uppercase tracking-widest text-primary">Mentoring Programs</h4>
               <ul className="grid gap-6 md:grid-cols-2">
                 {teachingHighlights.map((item) => (
                   <li key={item.id} className="flex items-start gap-3">

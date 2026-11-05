@@ -2,7 +2,8 @@
 
 import { useMemo, useState } from "react";
 import { projects } from "@/lib/projects";
-import { 
+import { programs } from "@/content/programs";
+import {
   Database, 
   Cpu, 
   Layers, 
@@ -16,9 +17,16 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+const ALL_CATEGORIES = ["Data Engineering", "Machine Learning", "AI", "NLP", "Computer Vision", "Data Science"];
+
 export function ProjectsSection({ limit, isHomePage = false }: { limit?: number; isHomePage?: boolean }) {
   const [selectedType, setSelectedType] = useState<string>("All");
   const [selectedTech, setSelectedTech] = useState<string | null>(null);
+
+  const availableTypes = useMemo(
+    () => ["All", ...ALL_CATEGORIES.filter((type) => projects.some((p) => p.type === type))],
+    []
+  );
 
   const filteredProjects = useMemo(
     () =>
@@ -60,7 +68,7 @@ export function ProjectsSection({ limit, isHomePage = false }: { limit?: number;
         </div>
 
         <div className="flex flex-wrap gap-2">
-          {["All", "Data Engineering", "Machine Learning", "AI", "NLP", "Computer Vision", "Data Science"].map((type) => (
+          {availableTypes.map((type) => (
             <button
               key={type}
               type="button"
@@ -93,9 +101,16 @@ export function ProjectsSection({ limit, isHomePage = false }: { limit?: number;
 
             <div className="flex flex-1 flex-col p-8">
               <div className="mb-6 flex items-center justify-between">
-                <span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">
-                  {project.type}
-                </span>
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">
+                    {project.type}
+                  </span>
+                  {project.isPublic && (
+                    <span className="rounded-full border border-green-500/30 bg-green-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-green-500">
+                      OPEN DEMO
+                    </span>
+                  )}
+                </div>
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary text-primary group-hover:bg-primary group-hover:text-black transition-colors duration-300">
                   <Database size={20} />
                 </div>
@@ -137,6 +152,15 @@ export function ProjectsSection({ limit, isHomePage = false }: { limit?: number;
               </div>
 
               <div className="mt-auto pt-6 border-t border-border">
+                {project.relatedPrograms.length > 0 && (
+                  <p className="mb-4 text-[11px] font-semibold text-muted-foreground">
+                    Taught in:{" "}
+                    {project.relatedPrograms
+                      .map((slug) => programs.find((p) => p.slug === slug)?.title)
+                      .filter(Boolean)
+                      .join(" · ")}
+                  </p>
+                )}
                 <div className="mb-6 flex flex-wrap gap-2">
                   {project.toolsStack.map((tool) => (
                     <span 
