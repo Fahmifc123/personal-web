@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { Send, User, Bot, Sparkles, ChevronLeft, Trash2 } from "lucide-react";
-import { getAIChatReply, getChatbotReply } from "@/lib/chatbot";
+import { getAIChatReply, getChatbotReply, suggestedQuestions } from "@/lib/chatbot";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
@@ -17,20 +17,19 @@ export default function AskAIPage() {
   const [messages, setMessages] = useState<Message[]>([
     {
       role: "assistant",
-      content: "Halo! Saya Ask Fahmi AI. Saya bisa membantu menjawab pertanyaan seputar pengalaman saya di bidang Data Science, AI, NLP, hingga aktivitas mengajar dan mentoring. Ada yang ingin Anda tanyakan?",
+      content: "Hi! I'm Fahmi's AI assistant. Ask me about my training programs, experience, or how I can help your team learn Data & AI.",
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || isLoading) return;
+  const sendMessage = async (text: string) => {
+    if (!text.trim() || isLoading) return;
 
     const userMsg: Message = {
       role: "user",
-      content: input,
+      content: text,
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
     setMessages((prev) => [...prev, userMsg]);
@@ -39,8 +38,8 @@ export default function AskAIPage() {
 
     try {
       const chatHistory = messages.map(m => ({ role: m.role, content: m.content }));
-      chatHistory.push({ role: "user", content: input });
-      
+      chatHistory.push({ role: "user", content: text });
+
       const reply = await getAIChatReply(chatHistory);
       setMessages((prev) => [
         ...prev,
@@ -57,12 +56,17 @@ export default function AskAIPage() {
     }
   };
 
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await sendMessage(input);
+  };
+
   const clearChat = () => {
-    if (confirm("Hapus semua percakapan?")) {
+    if (confirm("Clear this conversation?")) {
       setMessages([
         {
           role: "assistant",
-          content: "Chat dibersihkan. Ada lagi yang ingin Anda tanyakan?",
+          content: "Chat cleared. What else would you like to ask?",
           time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
         },
       ]);
@@ -140,6 +144,19 @@ export default function AskAIPage() {
               </div>
             </div>
           ))}
+          {messages.length === 1 && !isLoading && (
+            <div className="flex flex-wrap gap-2 pl-12">
+              {suggestedQuestions.map((q) => (
+                <button
+                  key={q}
+                  onClick={() => sendMessage(q)}
+                  className="rounded-full border border-border bg-card px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                >
+                  {q}
+                </button>
+              ))}
+            </div>
+          )}
           {isLoading && (
             <div className="flex gap-4 items-start">
               <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-primary text-black border border-border">

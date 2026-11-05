@@ -1,6 +1,6 @@
 "use client";
 
-import { corporateClients, academicPartners } from "@/lib/teaching";
+import { corporateClients, academicPartners } from "@/content/clients";
 
 function Marquee({ items, reverse = false }: { items: string[]; reverse?: boolean }) {
   const doubled = [...items, ...items];
@@ -28,12 +28,12 @@ function Marquee({ items, reverse = false }: { items: string[]; reverse?: boolea
 
 export function TrustedBySection() {
   return (
-    <section aria-labelledby="trusted-by-heading" className="mx-auto max-w-7xl px-6 py-12">
+    <section id="clients" aria-labelledby="trusted-by-heading" className="mx-auto max-w-7xl px-6 py-12 scroll-mt-24">
       <p
         id="trusted-by-heading"
         className="mb-6 text-center text-[10px] font-bold uppercase tracking-[0.3em] text-muted-foreground"
       >
-        Dipercaya oleh 20+ perusahaan &amp; 10+ mitra akademik
+        Trusted by 20+ companies &amp; 10+ academic partners
       </p>
       <div className="space-y-4">
         <Marquee items={corporateClients} />

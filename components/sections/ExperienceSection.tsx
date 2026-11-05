@@ -15,21 +15,12 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    id: "insignia",
-    role: "DATA & AI MENTOR",
-    company: "INSIGNIA",
-    location: "WEST JAKARTA, INDONESIA (HYBRID)",
-    dateRange: "JUN 2026 - PRESENT",
-    description: "Driving talent transformation, curriculum development, and technical mentorship across Data Science, Data Engineering, AI, NLP & LLMs for multiple business units, designing and delivering training programs that build technical capability across the organization.",
-  },
-  {
-    id: "nolimit-combined",
-    role: "HEAD OF DATA SCIENCE",
-    company: "NOLIMIT INDONESIA",
-    location: "BANDUNG, INDONESIA",
-    dateRange: "APR 2022 - JUN 2026",
-    description: "Led the data science team (Jul 2024 - Jun 2026) in managing AI & NLP projects like Sentiment Analysis, Topic Modeling, NER, Chatbots, and Automated Summarization. Previously served as a Data Scientist (Apr 2022 - Jul 2024) implementing AI pipelines with BERT, LLMs, ONNX optimization and RAG for large-scale social media monitoring.",
-    link: "https://nolimit.id"
+    id: "freelance-trainer",
+    role: "FREELANCE DATA & AI TRAINER & MENTOR",
+    company: "FREELANCE",
+    location: "REMOTE & SEASONAL",
+    dateRange: "2019 - PRESENT",
+    description: "Delivered 350+ training sessions on AI Automation, Generative AI, Machine Learning, and NLP for professionals and corporate clients like Bank Danamon, Toyota, PLN, and Freeport. Built and delivered Data & AI curricula for bootcamps and job-ready programs, creating hands-on modules on AI model development, NLP applications, and end-to-end AI projects.",
   },
   {
     id: "intelligo-id",
@@ -37,16 +28,26 @@ const experiences: Experience[] = [
     company: "INTELLIGO ID",
     location: "INDONESIA (ONLINE, OFFLINE & HYBRID)",
     dateRange: "2024 - PRESENT",
-    description: "Trainer utama di Intelligo ID, platform EduTech Data Science & AI, membawakan Corporate Training, Job Ready Bootcamp, dan Private Course 1-on-1 — mencakup AI & Generative AI, Machine Learning lanjutan, Data & Programming, hingga Business Intelligence untuk klien seperti Telkom Corporate University, AXA Mandiri, BPK PENABUR, dan IPB University.",
+    description: "Lead Trainer at Intelligo ID, an EduTech platform for Data Science & AI, delivering Corporate Training, Job-Ready Bootcamps, and 1-on-1 Private Courses — covering AI & Generative AI, advanced Machine Learning, Data & Programming, and Business Intelligence for clients such as Telkom Corporate University, AXA Mandiri, BPK PENABUR, and IPB University.",
     link: "https://intelligo.id"
   },
   {
-    id: "freelance-trainer",
-    role: "FREELANCE TRAINER & MENTOR",
-    company: "FREELANCE",
-    location: "REMOTE & SEASONAL",
-    dateRange: "JAN 2019 - PRESENT",
-    description: "Delivered 350+ training sessions on AI, Machine Learning, and NLP for professionals and corporate clients like Bank Danamon, Toyota, PLN, and Freeport. Built and delivered AI Programming & Data Science curricula for Bootcamps and Job Ready programs, creating hands-on modules on AI model development, NLP applications, and end-to-end AI projects.",
+    id: "nolimit-head",
+    role: "HEAD OF DATA SCIENCE",
+    company: "NOLIMIT INDONESIA",
+    location: "BANDUNG, INDONESIA",
+    dateRange: "JUL 2024 - MAY 2026",
+    description: "Led the data science team managing AI & NLP projects such as Sentiment Analysis, Topic Modeling, NER, Chatbots, and Automated Summarization, setting technical direction and mentoring engineers on production AI systems.",
+    link: "https://nolimit.id"
+  },
+  {
+    id: "nolimit-ds",
+    role: "DATA SCIENTIST",
+    company: "NOLIMIT INDONESIA",
+    location: "BANDUNG, INDONESIA",
+    dateRange: "APR 2022 - JUL 2024",
+    description: "Implemented AI pipelines with BERT, LLMs, ONNX optimization, and RAG for large-scale social media monitoring, building the foundation for the team's production NLP systems.",
+    link: "https://nolimit.id"
   },
   {
     id: "skilvul",

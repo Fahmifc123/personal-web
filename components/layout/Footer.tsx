@@ -7,10 +7,10 @@ export function Footer() {
             © {new Date().getFullYear()} Muhammad Fahmi.
           </p>
           <p className="max-w-xs leading-relaxed">
-            Data & AI Mentor at Insignia. AI & NLP Engineer. Lead Trainer at Intelligo ID.
+            Data & AI Corporate Trainer & Mentor. Former Head of Data Science.
           </p>
         </div>
-        
+
         <div className="flex gap-8">
           <a href="/" className="hover:text-primary transition-colors">Home</a>
           <a href="/projects" className="hover:text-primary transition-colors">Projects & Portfolio</a>
@@ -20,10 +20,6 @@ export function Footer() {
 
         <div className="flex flex-col md:items-end gap-2">
           <p>Built with Next.js & Tailwind CSS</p>
-          <div className="flex gap-4">
-            <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-            <span className="text-[10px] font-bold uppercase tracking-widest">Available for hire</span>
-          </div>
         </div>
       </div>
     </footer>

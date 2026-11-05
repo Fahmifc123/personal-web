@@ -12,32 +12,45 @@ export interface ChatMessage {
 }
 
 const personaIntro =
-  "Saya Ask Fahmi AI, versi AI dari Muhammad Fahmi – Data & AI Mentor di Insignia, mantan Head of Data Science di NoLimit Indonesia, " +
+  "Saya Ask Fahmi AI, versi AI dari Muhammad Fahmi – Data & AI Corporate Trainer & Mentor, mantan Head of Data Science di NoLimit Indonesia, " +
   "Data Scientist, AI & NLP Engineer, sekaligus trainer dan mentor AI & Data Science secara freelance. " +
   "Saya akan menjawab dengan sudut pandang seorang praktisi dan pemimpin tim data.";
+
+export const suggestedQuestions = [
+  "What training programs do you offer?",
+  "Can you run a custom AI training for my company?",
+  "What's your experience with NLP and LLMs?",
+];
 
 // Experience data
 const experiences = [
   {
-    role: "DATA & AI MENTOR",
-    company: "INSIGNIA",
-    location: "WEST JAKARTA, INDONESIA (HYBRID)",
-    dateRange: "JUN 2026 - PRESENT",
-    description: "Driving talent transformation, curriculum development, and technical mentorship across Data Science, Data Engineering, AI, NLP & LLMs for multiple business units."
+    role: "FREELANCE DATA & AI TRAINER & MENTOR",
+    company: "FREELANCE",
+    location: "REMOTE & SEASONAL",
+    dateRange: "2019 - PRESENT",
+    description: "Delivered 350+ training sessions on AI Automation, Generative AI, Machine Learning, and NLP for professionals and corporate clients like Bank Danamon, Toyota, PLN, and Freeport. Built and delivered Data & AI curricula for bootcamps and job-ready programs."
+  },
+  {
+    role: "LEAD TRAINER",
+    company: "INTELLIGO ID",
+    location: "INDONESIA (ONLINE, OFFLINE & HYBRID)",
+    dateRange: "2024 - PRESENT",
+    description: "Lead Trainer at Intelligo ID, an EduTech platform for Data Science & AI, delivering Corporate Training, Job-Ready Bootcamps, and 1-on-1 Private Courses."
   },
   {
     role: "HEAD OF DATA SCIENCE",
     company: "NOLIMIT INDONESIA",
     location: "BANDUNG, INDONESIA",
-    dateRange: "APR 2022 - JUN 2026",
-    description: "Led the data science team (Jul 2024 - Jun 2026) in managing AI & NLP projects like Sentiment Analysis, NER, and Chatbots. Previously served as a Data Scientist (Apr 2022 - Jul 2024) implementing AI pipelines with RAG and Deep Learning frameworks."
+    dateRange: "JUL 2024 - MAY 2026",
+    description: "Led the data science team managing AI & NLP projects like Sentiment Analysis, NER, and Chatbots."
   },
   {
-    role: "FREELANCE TRAINER & MENTOR",
-    company: "FREELANCE",
-    location: "REMOTE & SEASONAL",
-    dateRange: "JAN 2019 - PRESENT",
-    description: "Delivered 350+ training sessions on AI, Machine Learning, and NLP for professionals and corporate clients like Bank Danamon, Toyota, PLN, and Freeport. Built and delivered AI Programming & Data Science curricula for Bootcamps and Job Ready programs."
+    role: "DATA SCIENTIST",
+    company: "NOLIMIT INDONESIA",
+    location: "BANDUNG, INDONESIA",
+    dateRange: "APR 2022 - JUL 2024",
+    description: "Implemented AI pipelines with RAG and Deep Learning frameworks for large-scale social media monitoring."
   },
   {
     role: "MENTOR AI & DATA SCIENCE",

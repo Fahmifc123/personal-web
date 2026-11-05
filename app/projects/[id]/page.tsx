@@ -1,20 +1,23 @@
 import { notFound } from "next/navigation";
 import { projects } from "@/lib/projects";
-import { 
-  ChevronLeft, 
-  Database, 
-  Layers, 
-  TrendingUp, 
-  Wrench, 
+import { programs } from "@/content/programs";
+import {
+  ChevronLeft,
+  Database,
+  Layers,
+  TrendingUp,
+  Wrench,
   Briefcase,
   Code2,
   Cpu,
   ArrowRight,
   Zap,
-  ShieldCheck
+  ShieldCheck,
+  ExternalLink
 } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import type { Metadata } from "next";
 
 interface ProjectDetailPageProps {
   params: {
@@ -24,6 +27,19 @@ interface ProjectDetailPageProps {
 
 export function generateStaticParams() {
   return projects.map((project) => ({ id: project.id }));
+}
+
+export function generateMetadata({ params }: ProjectDetailPageProps): Metadata {
+  const project = projects.find((p) => p.id === params.id);
+  if (!project) return {};
+  return {
+    title: `${project.title} | Muhammad Fahmi`,
+    description: project.outcomeImpact,
+    openGraph: {
+      title: `${project.title} | Muhammad Fahmi`,
+      description: project.outcomeImpact,
+    },
+  };
 }
 
 export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
@@ -58,7 +74,27 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                 NDA Protected — {project.organization}
               </div>
             )}
+            {project.isPublic && (
+              <div className="inline-flex items-center gap-2 rounded-full border border-green-500/30 bg-green-500/10 px-4 py-1.5 text-xs font-bold uppercase tracking-[0.2em] text-green-500">
+                OPEN DEMO
+              </div>
+            )}
           </div>
+
+          {project.isPublic && (project.demoUrl || project.repoUrl) && (
+            <div className="mt-4 flex flex-wrap gap-4">
+              {project.demoUrl && (
+                <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
+                  <ExternalLink size={14} /> Live Demo
+                </a>
+              )}
+              {project.repoUrl && (
+                <a href={project.repoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-sm font-bold text-primary hover:underline">
+                  <Code2 size={14} /> Source Code
+                </a>
+              )}
+            </div>
+          )}
           <h1 className="text-4xl font-black tracking-tight text-foreground md:text-6xl leading-tight">
             {project.title}
           </h1>
@@ -294,7 +330,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
             )}
 
             {/* Architecture Diagram for AI Report Generation Project */}
-            {project.type === "Data Engineering" && project.id === "ai-report-generation" && (
+            {project.id === "ai-report-generation" && (
               <section className="relative rounded-[2.5rem] border border-border bg-card/50 p-8 md:p-12">
                 <div className="flex items-center gap-3 mb-8">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-black">
@@ -433,7 +469,7 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
             )}
 
             {/* Architecture Diagram for MLOps Project */}
-            {project.type === "Data Engineering" && project.id === "mlops-auto-retrain" && (
+            {project.id === "mlops-auto-retrain" && (
               <section className="relative rounded-[2.5rem] border border-border bg-card/50 p-8 md:p-12">
                 <div className="flex items-center gap-3 mb-8">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-black">
@@ -593,10 +629,31 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                 <Briefcase size={14} /> Strategic Value
               </h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
-                Project ini merepresentasikan keahlian saya dalam membangun sistem AI yang tidak hanya akurat secara teknis,
-                tetapi juga memiliki skalabilitas tinggi untuk kebutuhan operasional perusahaan.
+                This project reflects my ability to build AI systems that are not only technically accurate,
+                but also scalable enough for real operational needs.
               </p>
             </div>
+
+            {project.relatedPrograms.length > 0 && (
+              <div className="rounded-3xl border border-border bg-card p-8">
+                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-primary mb-4">Taught In</h3>
+                <div className="flex flex-wrap gap-2">
+                  {project.relatedPrograms.map((slug) => {
+                    const program = programs.find((p) => p.slug === slug);
+                    if (!program) return null;
+                    return (
+                      <a
+                        key={slug}
+                        href="/#programs"
+                        className="rounded-lg bg-secondary px-3 py-1.5 text-[11px] font-bold text-muted-foreground hover:text-primary transition-colors"
+                      >
+                        {program.title}
+                      </a>
+                    );
+                  })}
+                </div>
+              </div>
+            )}
 
             {project.confidential && (
               <div className="rounded-3xl border border-border bg-card p-8">

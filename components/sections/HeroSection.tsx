@@ -3,28 +3,28 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { Send, User } from "lucide-react";
-import { getAIChatReply, getChatbotReply } from "@/lib/chatbot";
+import { getAIChatReply, getChatbotReply, suggestedQuestions } from "@/lib/chatbot";
 import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
+import { track } from "@vercel/analytics";
 
 export function HeroSection() {
   const [messages, setMessages] = useState([
     {
       role: "assistant",
-      content: "Hello! I'm Muhammad's AI persona. How can I help you today?",
+      content: "Hi! I'm Fahmi's AI assistant. Ask me about my training programs, experience, or how I can help your team learn Data & AI.",
       time: "2:41 PM",
     },
   ]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
-  const handleSendMessage = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim() || isLoading) return;
+  const sendMessage = async (text: string) => {
+    if (!text.trim() || isLoading) return;
 
     const userMsg = {
       role: "user",
-      content: input,
+      content: text,
       time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     };
     setMessages((prev) => [...prev, userMsg]);
@@ -33,8 +33,8 @@ export function HeroSection() {
 
     try {
       const chatHistory = messages.map(m => ({ role: m.role, content: m.content }));
-      chatHistory.push({ role: "user", content: input });
-      
+      chatHistory.push({ role: "user", content: text });
+
       const reply = await getAIChatReply(chatHistory);
       setMessages((prev) => [
         ...prev,
@@ -51,6 +51,11 @@ export function HeroSection() {
     }
   };
 
+  const handleSendMessage = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await sendMessage(input);
+  };
+
   return (
     <section className="relative overflow-hidden bg-background pt-20 pb-16 md:pt-32 md:pb-24">
       <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-[0.04]" />
@@ -64,34 +69,45 @@ export function HeroSection() {
                 <span className="absolute inline-flex h-2 w-2 animate-ping rounded-full bg-primary opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
               </span>
-              AVAILABLE FOR STRATEGIC CONSULTING
+              OPEN FOR CORPORATE TRAINING & PRIVATE MENTORING
             </div>
 
             <h1 className="text-5xl font-extrabold tracking-tight sm:text-6xl md:text-7xl">
-              I Lead Data Science Teams, Build AI, and Educate in<br />
-              <span className="text-primary">DS, AI & NLP.</span>
+              Data &amp; AI training your team can{" "}
+              <span className="text-primary">apply at work</span>, not just understand.
             </h1>
 
             <p className="max-w-xl text-lg text-muted-foreground">
-              Data & AI Mentor at Insignia · AI & NLP Engineer <br />
-              Former Head of Data Science at NoLimit Indonesia · 350+ training sessions delivered.
+              Corporate Trainer &amp; Mentor in AI Automation, Generative AI, NLP, and Data Analytics.<br />
+              Former Head of Data Science · 350+ sessions · 7,000+ learners · 20+ companies.
             </p>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-wrap items-center gap-4">
               <Link
-                href="/ask-ai"
+                href="https://www.linkedin.com/in/muhammad-fahmi17"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => track("cta_linkedin", { location: "hero" })}
                 className="inline-flex h-12 items-center justify-center rounded-md bg-primary px-8 text-base font-bold text-black shadow-lg transition-transform hover:scale-105 active:scale-95"
               >
-                <Send className="mr-2 h-4 w-4" /> Ask Fahmi AI
+                <Send className="mr-2 h-4 w-4" /> Chat with me on LinkedIn
               </Link>
               <Link
-                href="https://drive.google.com/file/d/1rMoms5ofNbPzPhTXqfyCF1hUvixL0qyn/view?usp=sharing"
-                target="_blank"
+                href="#programs"
                 className="inline-flex h-12 items-center justify-center rounded-md border border-border bg-transparent px-8 text-base font-bold text-foreground transition-all hover:bg-accent"
               >
-                View/Download CV
+                See Training Programs
               </Link>
             </div>
+
+            <Link
+              href="https://drive.google.com/file/d/1rMoms5ofNbPzPhTXqfyCF1hUvixL0qyn/view?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block text-sm font-semibold text-muted-foreground underline-offset-4 hover:text-primary hover:underline"
+            >
+              Download CV
+            </Link>
           </div>
 
           {/* Right Column: Integrated Chatbot UI */}
@@ -145,6 +161,19 @@ export function HeroSection() {
                     <span className="text-[10px] text-muted-foreground">{msg.time}</span>
                   </div>
                 ))}
+                {messages.length === 1 && !isLoading && (
+                  <div className="flex flex-wrap gap-2">
+                    {suggestedQuestions.map((q) => (
+                      <button
+                        key={q}
+                        onClick={() => sendMessage(q)}
+                        className="rounded-full border border-border bg-background px-3 py-1.5 text-xs font-semibold text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+                      >
+                        {q}
+                      </button>
+                    ))}
+                  </div>
+                )}
                 {isLoading && (
                   <div className="flex items-start">
                     <div className="max-w-[85%] rounded-xl bg-muted px-4 py-2 text-sm animate-pulse">

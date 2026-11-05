@@ -1,20 +1,7 @@
 "use client";
 
-import { 
-  Mail, 
-  Linkedin, 
-  MessageSquare
-} from "lucide-react";
-import { cn } from "@/lib/utils";
-
-const socialLinks = [
-  {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/in/muhammad-fahmi17/",
-    icon: Linkedin,
-    color: "hover:text-[#0077b5]"
-  }
-];
+import { Linkedin, MessageSquare, Mail } from "lucide-react";
+import { track } from "@vercel/analytics";
 
 export function ContactSection() {
   return (
@@ -31,57 +18,53 @@ export function ContactSection() {
           id="contact-heading"
           className="text-4xl font-extrabold tracking-tight text-foreground md:text-5xl"
         >
-          Let&apos;s Build Something <span className="text-primary">Impactful</span>
+          Let&apos;s upskill <span className="text-primary">your team</span>.
         </h2>
         <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-          Whether you have a strategic business problem to solve, a team that needs training, 
-          or just want to discuss the latest in AI — my inbox is always open.
+          Planning AI or data training for your team, or looking for a private mentor? Send me a
+          message on LinkedIn with your goal and team size, and I&apos;ll reply with a program outline.
         </p>
 
-        <div className="mt-12 flex flex-col sm:flex-row items-center gap-8 sm:gap-16">
-          <div className="flex flex-col items-center gap-4 group">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-black">
-              <Mail size={28} />
-            </div>
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Email Me</p>
-              <a href="mailto:mfahmipamungkas123@gmail.com" className="text-xl font-bold hover:text-primary transition-colors">
-                mfahmipamungkas123@gmail.com
-              </a>
-            </div>
-          </div>
-
-          <div className="flex flex-col items-center gap-4 group">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-secondary text-primary transition-colors group-hover:bg-primary group-hover:text-black">
-              <MessageSquare size={28} />
-            </div>
-            <div>
-              <p className="text-xs font-bold uppercase tracking-widest text-muted-foreground">Chat</p>
-              <a href="https://wa.me/6281263299950" target="_blank" rel="noopener noreferrer" className="text-xl font-bold hover:text-primary transition-colors">
-                WhatsApp
-              </a>
-            </div>
-          </div>
+        <div className="mt-12 flex flex-col sm:flex-row items-center gap-4">
+          <a
+            href="https://www.linkedin.com/in/muhammad-fahmi17"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => track("cta_linkedin", { location: "contact" })}
+            className="inline-flex h-14 items-center justify-center gap-2 rounded-xl bg-primary px-8 text-base font-bold text-black shadow-lg transition-transform hover:scale-105 active:scale-95"
+          >
+            <Linkedin size={20} /> Chat on LinkedIn
+          </a>
+          <a
+            href="https://wa.me/6281263299950"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex h-14 items-center justify-center gap-2 rounded-xl border border-border bg-transparent px-8 text-base font-bold text-foreground transition-all hover:bg-accent"
+          >
+            <MessageSquare size={20} /> WhatsApp
+          </a>
         </div>
 
         <div className="mt-16">
           <p className="mb-4 text-xs font-bold uppercase tracking-widest text-muted-foreground">Follow My Journey</p>
           <div className="flex justify-center gap-4">
-            {socialLinks.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={cn(
-                  "flex h-14 w-14 items-center justify-center rounded-xl bg-secondary transition-all hover:-translate-y-1",
-                  social.color
-                )}
-                aria-label={social.name}
-              >
-                <social.icon size={24} />
-              </a>
-            ))}
+            <a
+              href="https://www.linkedin.com/in/muhammad-fahmi17/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="LinkedIn"
+              className="flex h-14 w-14 items-center justify-center rounded-xl bg-secondary transition-all hover:-translate-y-1 hover:text-[#0077b5]"
+            >
+              <Linkedin size={24} />
+            </a>
+            <a
+              href="mailto:mfahmipamungkas123@gmail.com"
+              aria-label="Email"
+              title="Email"
+              className="flex h-14 w-14 items-center justify-center rounded-xl bg-secondary transition-all hover:-translate-y-1 hover:text-primary"
+            >
+              <Mail size={24} />
+            </a>
           </div>
         </div>
       </div>
