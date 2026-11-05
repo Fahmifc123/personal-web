@@ -7,7 +7,7 @@ export function Footer() {
             © {new Date().getFullYear()} Muhammad Fahmi.
           </p>
           <p className="max-w-xs leading-relaxed">
-            Data & AI Corporate Trainer & Mentor. Former Head of Data Science.
+            Data & AI Mentor at Insignia. Corporate Trainer & Mentor. Former Head of Data Science.
           </p>
         </div>
 

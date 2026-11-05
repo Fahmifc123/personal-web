@@ -15,38 +15,28 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
+    id: "insignia",
+    role: "DATA & AI MENTOR",
+    company: "INSIGNIA",
+    location: "INDONESIA",
+    dateRange: "MAY 2026 - PRESENT",
+    description: "Drive talent transformation, curriculum development, and technical mentorship across Data Science, Data Engineering, AI, NLP, and LLMs for multiple business units, designing and delivering training programs that build technical capability across the organization.",
+  },
+  {
     id: "freelance-trainer",
-    role: "FREELANCE DATA & AI TRAINER & MENTOR",
+    role: "FREELANCE, INSTRUCTOR, TRAINER & MENTOR",
     company: "FREELANCE",
     location: "REMOTE & SEASONAL",
-    dateRange: "2019 - PRESENT",
-    description: "Delivered 350+ training sessions on AI Automation, Generative AI, Machine Learning, and NLP for professionals and corporate clients like Bank Danamon, Toyota, PLN, and Freeport. Built and delivered Data & AI curricula for bootcamps and job-ready programs, creating hands-on modules on AI model development, NLP applications, and end-to-end AI projects.",
+    dateRange: "JAN 2019 - PRESENT",
+    description: "Delivered 350+ training sessions on AI Programming, AI, Machine Learning, NLP, and Data Science for professionals, students, and executives. Specialized in AI model building, deployment, and applied NLP systems using Python, PyTorch, TensorFlow, and FastAPI. Designed enterprise programs on Building Enterprise AI Chatbots with LLM & RAG (architecture, vector databases, prompt engineering, AI security & governance, Docker/Kubernetes deployment), plus developer-track programs on LangChain, RAG, ReAct agents, n8n workflow automation, multi-agent orchestration (CrewAI, AutoGen), and MLOps (MLflow) via PT Smartindo Manajemen Informatika. Clients include Bank Danamon, Toyota Astra Motor, Bayer, PLN, Freeport, Jasa Marga, Bank BSI, Seabank Indonesia, Pegadaian, and Ortax / PT Integral Data Prima, with academic engagements at UI, UGM, IPB, Atma Jaya, UPN Yogyakarta, ULBI, and Politeknik Madiun.",
   },
   {
-    id: "intelligo-id",
-    role: "LEAD TRAINER",
-    company: "INTELLIGO ID",
-    location: "INDONESIA (ONLINE, OFFLINE & HYBRID)",
-    dateRange: "2024 - PRESENT",
-    description: "Lead Trainer at Intelligo ID, an EduTech platform for Data Science & AI, delivering Corporate Training, Job-Ready Bootcamps, and 1-on-1 Private Courses — covering AI & Generative AI, advanced Machine Learning, Data & Programming, and Business Intelligence for clients such as Telkom Corporate University, AXA Mandiri, BPK PENABUR, and IPB University.",
-    link: "https://intelligo.id"
-  },
-  {
-    id: "nolimit-head",
+    id: "nolimit",
     role: "HEAD OF DATA SCIENCE",
     company: "NOLIMIT INDONESIA",
     location: "BANDUNG, INDONESIA",
-    dateRange: "JUL 2024 - MAY 2026",
-    description: "Led the data science team managing AI & NLP projects such as Sentiment Analysis, Topic Modeling, NER, Chatbots, and Automated Summarization, setting technical direction and mentoring engineers on production AI systems.",
-    link: "https://nolimit.id"
-  },
-  {
-    id: "nolimit-ds",
-    role: "DATA SCIENTIST",
-    company: "NOLIMIT INDONESIA",
-    location: "BANDUNG, INDONESIA",
-    dateRange: "APR 2022 - JUL 2024",
-    description: "Implemented AI pipelines with BERT, LLMs, ONNX optimization, and RAG for large-scale social media monitoring, building the foundation for the team's production NLP systems.",
+    dateRange: "APR 2022 - JUN 2026",
+    description: "Led and managed team projects in AI, AI Programming, and NLP — Sentiment Analysis, Topic Modeling, NER, Chatbots, Statement Extraction, and Automated Summarization. Designed and deployed AI-driven solutions using BERT, LLMs, ONNX optimization, and API integration for scalable social media monitoring, implementing AI pipelines with RAG, Elasticsearch, and Deep Learning frameworks.",
     link: "https://nolimit.id"
   },
   {
@@ -55,15 +45,39 @@ const experiences: Experience[] = [
     company: "SKILVUL (KAMPUS MERDEKA BATCH 6)",
     location: "REMOTE",
     dateRange: "JAN 2024 - JUN 2024",
-    description: "Mentored students in AI Programming & NLP projects under Kampus Merdeka Batch 6 (Skilvul x IBM). Focused on applied AI model development with Python.",
+    description: "Mentored students in AI Programming & NLP projects under Kampus Merdeka Batch 6 (Skilvul x IBM).",
   },
   {
     id: "binar",
-    role: "DATA SCIENCE FACILITATOR",
+    role: "FACILITATOR DATA SCIENCE - FREELANCE",
     company: "BINAR ACADEMY",
     location: "REMOTE",
     dateRange: "SEP 2022 - SEP 2023",
-    description: "Facilitated Data Science bootcamps for B2B and B2C programs, including Digitalent Kominfo and corporate partners like PT. Bayer Indonesia.",
+    description: "Facilitator and mentor for Bootcamp FGA Digitalent Kominfo (B2C), Bootcamp PJB Pembangkitan Jawa Bali (B2B), and Bootcamp PT. Bayer Indonesia (B2B).",
+  },
+  {
+    id: "startup-campus",
+    role: "DATA SCIENCE MENTOR - PART-TIME",
+    company: "STARTUP CAMPUS X KAMPUS MERDEKA",
+    location: "REMOTE",
+    dateRange: "AUG 2022 - FEB 2023",
+    description: "Data Science Mentor at Kampus Merdeka.",
+  },
+  {
+    id: "kodehive",
+    role: "INSTRUCTOR - PYTHON DATA SCIENCE - FREELANCE",
+    company: "KODEHIVE (PT KODE GAMA TEKNOLOGI)",
+    location: "REMOTE",
+    dateRange: "DEC 2021 - FEB 2023",
+    description: "Created short learning videos about Data Science and served as a mentor at bootcamps.",
+  },
+  {
+    id: "ruangguru",
+    role: "INSTRUCTOR - DATA, BUSINESS ANALYTICS AND OPERATIONS",
+    company: "RUANGGURU.COM · PART-TIME",
+    location: "REMOTE",
+    dateRange: "FEB 2022 - JUN 2022",
+    description: "Instructor at the Studi Independen Ruangguru x Kampus Merdeka.",
   },
   {
     id: "kebun-pintar",
@@ -79,15 +93,23 @@ const experiences: Experience[] = [
     company: "PT BANK MANDIRI (PERSERO) TBK",
     location: "REMOTE",
     dateRange: "NOV 2021 - DEC 2021",
-    description: "Worked on the Talent Score Card project in collaboration with Setneg, creating a recommendation system based on profile similarities.",
+    description: "Worked on the Talent Score Card project at Setneg, creating a recommendation system based on profile similarities.",
+  },
+  {
+    id: "bisa-ai",
+    role: "HEAD OF ACADEMY DIVISION - STUDENT AMBASSADOR",
+    company: "BISA AI ACADEMY (PT BISA ARTIFISIAL INDONESIA)",
+    location: "REMOTE",
+    dateRange: "FEB 2021 - JUL 2021",
+    description: "Led academy-division initiatives as a student ambassador for BISA AI Academy.",
   },
   {
     id: "telkom",
     role: "DATA SCIENTIST",
-    company: "TELKOM INDONESIA (DDB)",
+    company: "PT. TELEKOMUNIKASI INDONESIA TBK — DIREKTORAT DIGITAL BUSINESS (TELKOM DDB)",
     location: "BANDUNG, INDONESIA",
     dateRange: "AUG 2020 - JAN 2021",
-    description: "Developed Emerging Topic Recommendation systems within the Digital Business Directorate.",
+    description: "Built an Emerging Topic Recommendation system within the Digital Business Directorate.",
   }
 ];
 

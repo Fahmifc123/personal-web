@@ -9,9 +9,9 @@ const SITE_URL = "https://fahmi.vercel.app";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: "Muhammad Fahmi | Data & AI Corporate Trainer & Mentor – Portfolio",
+  title: "Muhammad Fahmi | Data & AI Mentor, Corporate Trainer – Portfolio",
   description:
-    "Portfolio of Muhammad Fahmi, Data & AI corporate trainer and former Head of Data Science. Hands-on training in AI Automation (n8n), Generative AI, NLP, and Data Analytics. 350+ sessions, 7,000+ learners, 20+ companies.",
+    "Portfolio of Muhammad Fahmi, Data & AI Mentor at Insignia and former Head of Data Science. Hands-on corporate training in AI Programming, LLMs, RAG, and Data Analytics. 350+ sessions, 7,000+ learners, 20+ companies.",
   keywords: [
     "Muhammad Fahmi",
     "Data & AI Trainer",
@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     url: SITE_URL,
-    title: "Muhammad Fahmi | Data & AI Corporate Trainer & Mentor",
+    title: "Muhammad Fahmi | Data & AI Mentor, Corporate Trainer",
     description:
       "Hands-on Data & AI training your team can apply at work. 350+ sessions, 7,000+ learners, 20+ companies.",
     images: [
@@ -41,7 +41,7 @@ const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: "Muhammad Fahmi",
-  jobTitle: "Data & AI Corporate Trainer & Mentor",
+  jobTitle: "Data & AI Mentor",
   url: SITE_URL,
   address: { "@type": "PostalAddress", addressLocality: "Bandung", addressCountry: "ID" },
   sameAs: ["https://www.linkedin.com/in/muhammad-fahmi17"],

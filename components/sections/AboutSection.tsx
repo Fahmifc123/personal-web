@@ -34,15 +34,17 @@ export function AboutSection() {
 
           <div className="space-y-6 text-lg leading-relaxed text-muted-foreground">
             <p>
-              I&apos;m Fahmi, a Data &amp; AI trainer and former Head of Data Science. I help companies and
-              individuals go from &ldquo;we should use AI&rdquo; to working automations, dashboards, and
-              models they can use at work right away.
+              I&apos;m Fahmi, a Data Scientist and AI/NLP Engineer. Currently Data &amp; AI Mentor at
+              Insignia, driving talent transformation and technical mentorship in Data Science, AI, NLP,
+              and LLMs across multiple business units. I help companies and individuals go from
+              &ldquo;we should use AI&rdquo; to working automations, dashboards, and models they can use
+              at work right away.
             </p>
             <p>
-              Before focusing on training, I spent 4+ years at NoLimit Indonesia building and leading
-              production NLP, LLM, and RAG systems for large-scale social media monitoring. That
-              production experience shapes how I teach: every program is built around real use cases,
-              hands-on from the first session, with clear outputs at the end.
+              Before focusing on training, I spent 4+ years at NoLimit Indonesia as Head of Data Science,
+              building and leading production NLP, LLM, and RAG systems for large-scale social media
+              monitoring. That production experience shapes how I teach: every program is built around
+              real use cases, hands-on from the first session, with clear outputs at the end.
             </p>
             <p>
               Since 2019 I have delivered <span className="text-foreground font-semibold">350+ sessions</span> for{" "}

@@ -5,9 +5,9 @@ export const teachingHighlights = [
     description: "Independent corporate training and mentoring for Data Science & AI across companies and platforms since 2019."
   },
   {
-    id: "intelligo-id",
-    label: "Lead Trainer, Intelligo ID",
-    description: "Lead Trainer at Intelligo ID, an EduTech platform for Data Science & AI, delivering Corporate Training, Bootcamps, and Private Courses."
+    id: "enterprise-ai-rag",
+    label: "Enterprise AI Chatbot & RAG Training",
+    description: "Designed enterprise programs on Building Enterprise AI Chatbots with LLM & RAG, plus developer-track courses on LangChain, AI agents, and MLOps delivered via PT Smartindo Manajemen Informatika."
   },
   {
     id: "corporate-training",
