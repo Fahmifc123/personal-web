@@ -13,11 +13,20 @@ import {
   ArrowRight,
   Zap,
   ShieldCheck,
-  ExternalLink
+  ExternalLink,
+  XCircle,
+  Scale
 } from "lucide-react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
+import { PipelineFlow } from "@/components/projects/PipelineFlow";
+
+const CUSTOM_DIAGRAM_IDS = [
+  "realtime-nlp-data-platform",
+  "multi-source-web-scraper",
+  "ai-report-generation",
+  "mlops-auto-retrain",
+];
 
 interface ProjectDetailPageProps {
   params: {
@@ -34,10 +43,10 @@ export function generateMetadata({ params }: ProjectDetailPageProps): Metadata {
   if (!project) return {};
   return {
     title: `${project.title} | Muhammad Fahmi`,
-    description: project.outcomeImpact,
+    description: project.summary ?? project.outcomeImpact,
     openGraph: {
       title: `${project.title} | Muhammad Fahmi`,
-      description: project.outcomeImpact,
+      description: project.summary ?? project.outcomeImpact,
     },
   };
 }
@@ -48,6 +57,15 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   if (!project) {
     notFound();
   }
+
+  const moreProjects = projects
+    .filter((p) => p.id !== project.id)
+    .sort(
+      (a, b) =>
+        Number(b.type === project.type) - Number(a.type === project.type) ||
+        Number(!!b.featured) - Number(!!a.featured)
+    )
+    .slice(0, 3);
 
   return (
     <div className="min-h-screen bg-background pt-24 pb-20">
@@ -99,8 +117,13 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
             {project.title}
           </h1>
           <p className="mt-6 text-xl text-muted-foreground leading-relaxed max-w-3xl">
-            A comprehensive overview of the strategic implementation and real-world impact delivered through this initiative at {project.organization}.
+            {project.summary ?? project.outcomeImpact}
           </p>
+          {project.highlight && (
+            <p className="mt-6 inline-flex items-center gap-2 rounded-xl border border-primary/30 bg-primary/10 px-4 py-2 text-sm font-bold text-primary">
+              <TrendingUp size={16} /> {project.highlight}
+            </p>
+          )}
         </header>
 
         <div className="grid gap-12 lg:grid-cols-[1fr,350px]">
@@ -124,6 +147,20 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                   </div>
                 </div>
 
+                {project.naiveApproach && (
+                  <div className="flex gap-6">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-red-500/30 bg-red-500/10 text-red-400">
+                      <XCircle size={24} />
+                    </div>
+                    <div>
+                      <h2 className="text-sm font-black uppercase tracking-[0.2em] text-red-400 mb-3">Why the Obvious Approach Fails</h2>
+                      <p className="text-lg text-foreground/90 leading-relaxed">
+                        {project.naiveApproach}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
                 <div className="flex gap-6">
                   <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-black">
                     <Database size={24} />
@@ -133,6 +170,14 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                     <p className="text-lg text-foreground/90 leading-relaxed">
                       {project.modelApproach}
                     </p>
+                    {project.tradeoff && (
+                      <p className="mt-4 inline-flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider text-muted-foreground">
+                        <Scale size={14} className="text-primary" /> Balancing
+                        <span className="rounded-md bg-secondary px-2 py-1 text-foreground">{project.tradeoff[0]}</span>
+                        vs
+                        <span className="rounded-md bg-secondary px-2 py-1 text-foreground">{project.tradeoff[1]}</span>
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -149,6 +194,18 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
                 </div>
               </div>
             </section>
+
+            {project.pipeline && !CUSTOM_DIAGRAM_IDS.includes(project.id) && (
+              <section className="rounded-[2.5rem] border border-border bg-card/50 p-8 md:p-12">
+                <div className="mb-8 flex items-center gap-3">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary text-black">
+                    <Zap size={24} />
+                  </div>
+                  <h2 className="text-sm font-black uppercase tracking-[0.2em] text-primary">How It Works</h2>
+                </div>
+                <PipelineFlow steps={project.pipeline} size="lg" />
+              </section>
+            )}
 
             {/* Architecture Diagram for Data Engineering Projects */}
             {project.type === "Data Engineering" && project.id === "realtime-nlp-data-platform" && (
@@ -674,6 +731,32 @@ export default function ProjectDetailPage({ params }: ProjectDetailPageProps) {
             </div>
           </aside>
         </div>
+
+        {moreProjects.length > 0 && (
+          <section className="mt-24 border-t border-border pt-16" aria-labelledby="more-projects-heading">
+            <div className="mb-8 flex items-end justify-between gap-4">
+              <h2 id="more-projects-heading" className="text-2xl font-extrabold tracking-tight text-foreground">
+                More case studies
+              </h2>
+              <Link href="/projects" className="text-sm font-bold text-primary hover:underline">
+                All projects
+              </Link>
+            </div>
+            <div className="grid gap-4 md:grid-cols-3">
+              {moreProjects.map((p) => (
+                <Link
+                  key={p.id}
+                  href={p.link}
+                  className="group rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/50"
+                >
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-primary">{p.type}</span>
+                  <h3 className="mt-2 font-bold leading-snug text-foreground group-hover:text-primary">{p.title}</h3>
+                  <p className="mt-2 line-clamp-2 text-xs text-muted-foreground">{p.summary ?? p.outcomeImpact}</p>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
       </div>
     </div>
   );

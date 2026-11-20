@@ -16,9 +16,101 @@ export interface Project {
   isPublic: boolean;
   demoUrl?: string;
   repoUrl?: string;
+  summary?: string;
+  pipeline?: string[];
+  naiveApproach?: string;
+  tradeoff?: [string, string];
+  highlight?: string;
+  featured?: boolean;
 }
 
-export const projects: Project[] = [
+type CaseStudy = Pick<Project, "summary" | "pipeline" | "naiveApproach" | "tradeoff" | "highlight" | "featured">;
+
+const caseStudies: Record<string, CaseStudy> = {
+  "realtime-nlp-data-platform": {
+    summary: "Event-driven streaming platform that surfaces shifts in public conversation as they happen, not in tomorrow's report.",
+    pipeline: ["API Sources", "Kafka", "Workers", "Time-Window Aggregate", "Alert"],
+    naiveApproach: "Periodic reports meant new issues were only identified once the situation had already developed.",
+    tradeoff: ["Consistency", "Latency"],
+    highlight: "Millions of records per day",
+    featured: true,
+  },
+  "ai-report-generation": {
+    summary: "Client-ready PPT/PDF reports generated daily — rules decide the numbers, the LLM only writes the narrative.",
+    pipeline: ["Data Source", "Insight Engine", "LLM Structuring", "PPT / PDF"],
+    naiveApproach: "Static templates couldn't adapt to varying data, while a free-form LLM produced inconsistent formats and uncontrolled numbers.",
+    tradeoff: ["Creativity", "Consistency"],
+    highlight: "Report time: hours → minutes",
+    featured: true,
+  },
+  "mlops-auto-retrain": {
+    summary: "Models retrain themselves only when the data actually drifts, with an accuracy gate before anything ships.",
+    pipeline: ["Monitor", "Drift Detect", "Retrain", "Validate", "Deploy"],
+    naiveApproach: "Schedule-based retraining ignored reality — wasteful when data was stable, too late when it changed drastically.",
+    tradeoff: ["Deploy Speed", "Safety"],
+  },
+  "multi-source-web-scraper": {
+    summary: "Modular scraping framework that turns e-commerce, news, and image sources into validated, analysis-ready datasets.",
+    pipeline: ["Shopee / Kompas / Unsplash", "Selenium", "Extract", "Validate", "CSV / Parquet"],
+    highlight: "Collection time: days → hours",
+  },
+  "sentiment-absa-engine": {
+    summary: "Sentiment scored per aspect, so \"fast app, slow CS\" becomes two actionable signals instead of one muddy score.",
+    pipeline: ["Text", "Aspect Extraction", "IndoBERT Classifier", "Confidence Filter"],
+    naiveApproach: "Document-level sentiment merged aspect A and aspect B into one score, so the insight couldn't be acted on.",
+    tradeoff: ["Flexibility", "Consistency"],
+  },
+  "language-detection-routing": {
+    summary: "A cheap CPU language check at the front of the pipeline keeps irrelevant data away from expensive GPU models.",
+    pipeline: ["Text", "TFLite Language Detector", "Route", "NLP Model / Drop"],
+    naiveApproach: "Filtering at the end of the pipeline meant GPU time was already spent on data that was then thrown away.",
+    tradeoff: ["Recall", "Efficiency"],
+  },
+  "clustering-sna-dna-engine": {
+    summary: "Unlabeled conversations grouped into named topics and communities, so analysts get the narrative in minutes.",
+    pipeline: ["Embedding", "BERTopic Clustering", "Community Detection", "LLM Topic Naming", "Insight"],
+    naiveApproach: "Unstructured graph visualizations produced tangled output where analysts couldn't tell noise from real communities.",
+    tradeoff: ["Coverage", "Precision"],
+  },
+  "automated-media-summarization": {
+    summary: "Thousands of daily media items condensed into daily, WhatsApp, and report-ready summaries automatically.",
+    pipeline: ["Media Articles", "LLM Summarization", "Daily / WhatsApp / Report"],
+  },
+  "sentiment-llm-verify": {
+    summary: "A fast ML model handles most data; only low-confidence cases are escalated to an LLM — accuracy up, cost flat.",
+    pipeline: ["Input", "ML Model", "Confidence Check", "LLM Verify (low confidence)", "Result"],
+    naiveApproach: "Running every record through an LLM like GPT-4 was too expensive and too slow at this scale.",
+    tradeoff: ["Simplicity", "Complexity"],
+    highlight: "±80% fast model · ±20% LLM",
+    featured: true,
+  },
+  "ner-spokesperson-extraction": {
+    summary: "Answers \"who said what about whom\" by linking actors to their statements, including implicit references.",
+    pipeline: ["Text", "NER", "Speaker & Role", "Quote / Statement", "Kafka"],
+    naiveApproach: "Standard NER found names but didn't understand which statement belonged to which actor.",
+    tradeoff: ["Coverage", "Precision"],
+  },
+  "media-summarization": {
+    summary: "Retrieval-grounded summaries that keep nuance and stay faithful to the source articles.",
+    pipeline: ["Deduplicate", "Chunk", "Retrieve", "Summarize", "Verify"],
+    naiveApproach: "Extractive summaries (cutting out key sentences) lost nuance and produced choppy, out-of-context information.",
+    tradeoff: ["Speed", "Reliability"],
+  },
+  "talent-score-card": {
+    summary: "Similarity-based recommendation system for the Talent Score Card project at Setneg.",
+    pipeline: ["Talent Profiles", "Feature Representation", "Similarity Scoring", "Recommendations"],
+  },
+  "emerging-topic-recommendation": {
+    summary: "Recommendation system that surfaces emerging topics for Telkom's Digital Business Directorate.",
+    pipeline: ["Text Data", "Topic Extraction", "Trend Signal", "Emerging Topic Recommendation"],
+  },
+  "face-recognition-door": {
+    summary: "Door that unlocks automatically for recognized faces, built with Python and Arduino.",
+    pipeline: ["Camera", "Face Detection", "Face Recognition (Python)", "Arduino", "Door Lock"],
+  },
+};
+
+const baseProjects: Project[] = [
   {
     id: "realtime-nlp-data-platform",
     type: "Data Engineering",
@@ -183,5 +275,52 @@ export const projects: Project[] = [
     link: "/projects/media-summarization",
     relatedPrograms: ["genai-productivity"],
     isPublic: false,
+  },
+  {
+    id: "talent-score-card",
+    type: "Data Science",
+    organization: "PT Bank Mandiri (Persero) Tbk",
+    confidential: false,
+    title: "Talent Score Card Recommendation System",
+    businessProblem: "The Talent Score Card project at Setneg needed a consistent way to compare talent profiles and surface the most relevant candidates, instead of relying on manual profile-by-profile review.",
+    dataScale: "Talent profile data for the Talent Score Card project (Nov–Dec 2021 engagement).",
+    modelApproach: "Built a recommendation system that represents each talent profile and ranks candidates by profile similarity.",
+    outcomeImpact: "Delivered a similarity-based recommendation layer for the Talent Score Card project, giving reviewers a ranked starting point for candidate comparison.",
+    toolsStack: ["Python", "Recommendation System", "Similarity Search"],
+    link: "/projects/talent-score-card",
+    relatedPrograms: ["data-analytics"],
+    isPublic: false,
+  },
+  {
+    id: "emerging-topic-recommendation",
+    type: "NLP",
+    organization: "Telkom Indonesia (Digital Business Directorate)",
+    confidential: false,
+    title: "Emerging Topic Recommendation System",
+    businessProblem: "Telkom's Digital Business Directorate needed to spot topics that were starting to gain traction early, rather than discovering them after they had already peaked.",
+    dataScale: "Text data processed for the Digital Business Directorate (Aug 2020 – Jan 2021 engagement).",
+    modelApproach: "Built an Emerging Topic Recommendation system that extracts topics from text data and recommends the ones showing emerging trend signals.",
+    outcomeImpact: "Gave the Digital Business Directorate a recommendation feed of emerging topics to support earlier, data-driven decisions.",
+    toolsStack: ["Python", "NLP", "Topic Modeling"],
+    link: "/projects/emerging-topic-recommendation",
+    relatedPrograms: ["private-mentoring"],
+    isPublic: false,
+  },
+  {
+    id: "face-recognition-door",
+    type: "Computer Vision",
+    organization: "Politeknik Pos Indonesia (Academic)",
+    confidential: false,
+    title: "Automatic Door with Face Recognition (Arduino & Python)",
+    businessProblem: "Physical access control typically relies on keys or cards that can be lost or shared. The goal was a door that opens only for recognized people, without any physical credential.",
+    dataScale: "Academic project — Applied Bachelor in Informatics Engineering.",
+    modelApproach: "Built a face recognition system in Python that identifies registered faces from a camera feed and signals an Arduino-controlled lock to open the door.",
+    outcomeImpact: "A working prototype combining computer vision and embedded hardware — an early end-to-end project from model to physical device.",
+    toolsStack: ["Python", "Face Recognition", "Arduino"],
+    link: "/projects/face-recognition-door",
+    relatedPrograms: ["private-mentoring"],
+    isPublic: false,
   }
 ];
+
+export const projects: Project[] = baseProjects.map((p) => ({ ...p, ...caseStudies[p.id] }));

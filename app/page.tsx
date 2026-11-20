@@ -16,7 +16,7 @@ export default function HomePage() {
       <ProgramsSection />
       <AboutSection />
       <ExperienceSection limit={2} isHomePage={true} />
-      <ProjectsSection limit={4} isHomePage={true} />
+      <ProjectsSection limit={3} isHomePage={true} />
       <TestimonialsSection />
       <TeachingSection />
       <ContactSection />

@@ -1,44 +1,101 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { projects } from "@/lib/projects";
-import { programs } from "@/content/programs";
-import {
-  Database, 
-  Cpu, 
-  Layers, 
-  TrendingUp, 
-  Wrench,
-  ChevronRight,
-  ExternalLink,
-  Code2,
-  Filter,
-  ShieldCheck
-} from "lucide-react";
+import Link from "next/link";
+import { projects, type Project } from "@/lib/projects";
+import { PipelineFlow } from "@/components/projects/PipelineFlow";
+import { ChevronRight, Filter, ShieldCheck, TrendingUp, Star } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const ALL_CATEGORIES = ["Data Engineering", "Machine Learning", "AI", "NLP", "Computer Vision", "Data Science"];
+const MAX_TOOLS = 4;
+
+function ProjectCard({ project }: { project: Project }) {
+  const extraTools = project.toolsStack.length - MAX_TOOLS;
+
+  return (
+    <Link
+      href={project.link}
+      className="group relative flex flex-col rounded-3xl border border-border bg-card p-7 transition-all duration-300 hover:-translate-y-1 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
+    >
+      <div className="mb-5 flex flex-wrap items-center gap-2">
+        <span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">
+          {project.type}
+        </span>
+        {project.featured && (
+          <span className="inline-flex items-center gap-1 rounded-full border border-primary/30 px-2 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">
+            <Star size={10} className="fill-primary" /> Featured
+          </span>
+        )}
+        {project.isPublic && (
+          <span className="rounded-full border border-green-500/30 bg-green-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-green-500">
+            Open Demo
+          </span>
+        )}
+      </div>
+
+      <h3 className="text-xl font-bold leading-snug text-foreground transition-colors group-hover:text-primary">
+        {project.title}
+      </h3>
+      <p className="mt-2 flex items-center gap-1.5 text-[11px] font-semibold text-muted-foreground">
+        {project.organization}
+        {project.confidential && (
+          <ShieldCheck size={12} className="text-primary" aria-label="NDA protected" />
+        )}
+      </p>
+
+      <p className="mt-4 line-clamp-3 text-sm leading-relaxed text-foreground/80">
+        {project.summary ?? project.outcomeImpact}
+      </p>
+
+      {project.pipeline && (
+        <div className="mt-5">
+          <PipelineFlow steps={project.pipeline} />
+        </div>
+      )}
+
+      <div className="mt-auto pt-6">
+        {project.highlight && (
+          <p className="mb-4 flex items-center gap-2 text-xs font-bold text-primary">
+            <TrendingUp size={14} /> {project.highlight}
+          </p>
+        )}
+        <div className="flex items-end justify-between gap-4 border-t border-border pt-4">
+          <div className="flex flex-wrap gap-1.5">
+            {project.toolsStack.slice(0, MAX_TOOLS).map((tool) => (
+              <span key={tool} className="rounded-md bg-secondary/60 px-2 py-1 text-[10px] font-medium text-muted-foreground">
+                {tool}
+              </span>
+            ))}
+            {extraTools > 0 && (
+              <span className="rounded-md px-1 py-1 text-[10px] font-medium text-muted-foreground">+{extraTools}</span>
+            )}
+          </div>
+          <span className="inline-flex shrink-0 items-center gap-1 text-xs font-bold text-primary">
+            Case study
+            <ChevronRight size={14} className="transition-transform group-hover:translate-x-1" />
+          </span>
+        </div>
+      </div>
+    </Link>
+  );
+}
 
 export function ProjectsSection({ limit, isHomePage = false }: { limit?: number; isHomePage?: boolean }) {
   const [selectedType, setSelectedType] = useState<string>("All");
-  const [selectedTech, setSelectedTech] = useState<string | null>(null);
 
-  const availableTypes = useMemo(
-    () => ["All", ...ALL_CATEGORIES.filter((type) => projects.some((p) => p.type === type))],
-    []
-  );
+  const typeCounts = useMemo(() => {
+    const counts: Record<string, number> = { All: projects.length };
+    for (const p of projects) counts[p.type] = (counts[p.type] ?? 0) + 1;
+    return counts;
+  }, []);
 
-  const filteredProjects = useMemo(
-    () =>
-      projects.filter((project) => {
-        const matchesType =
-          selectedType === "All" || project.type === selectedType;
-        const matchesTech =
-          !selectedTech || project.toolsStack.includes(selectedTech);
-        return matchesType && matchesTech;
-      }),
-    [selectedType, selectedTech]
-  );
+  const availableTypes = ["All", ...ALL_CATEGORIES.filter((type) => typeCounts[type])];
+
+  const filteredProjects = useMemo(() => {
+    const list = projects.filter((p) => selectedType === "All" || p.type === selectedType);
+    return [...list].sort((a, b) => Number(!!b.featured) - Number(!!a.featured));
+  }, [selectedType]);
 
   const displayProjects = limit ? filteredProjects.slice(0, limit) : filteredProjects;
 
@@ -48,173 +105,70 @@ export function ProjectsSection({ limit, isHomePage = false }: { limit?: number;
       className="relative mx-auto max-w-7xl px-6 py-24 scroll-mt-24"
       aria-labelledby="projects-heading"
     >
-      {/* Background Decorative Element */}
-      <div className="absolute top-0 right-0 -z-10 h-[500px] w-[500px] bg-primary/5 blur-[120px] rounded-full" />
-      
-      <div className="mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
-        <div className="max-w-2xl">
-          <div className="mb-2 inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
-            Portfolio
-          </div>
-          <h2
-            id="projects-heading"
-            className="text-4xl font-extrabold tracking-tight text-foreground md:text-5xl"
-          >
-            Strategic <span className="text-primary">Data & AI</span> Projects
-          </h2>
-          <p className="mt-4 text-lg text-muted-foreground">
-            A curated selection of enterprise-grade NLP, predictive modeling, and AI automation solutions delivered for high-scale environments.
-          </p>
-        </div>
+      <div className="absolute top-0 right-0 -z-10 h-[500px] w-[500px] rounded-full bg-primary/5 blur-[120px]" />
 
-        <div className="flex flex-wrap gap-2">
+      <div className="mb-12 max-w-2xl">
+        <div className="mb-2 inline-flex items-center rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary">
+          Portfolio
+        </div>
+        <h2 id="projects-heading" className="text-4xl font-extrabold tracking-tight text-foreground md:text-5xl">
+          {isHomePage ? "Featured" : "Strategic"} <span className="text-primary">Data &amp; AI</span> Projects
+        </h2>
+        <p className="mt-4 text-lg text-muted-foreground">
+          Production NLP, LLM, and data systems — from large-scale social media monitoring to recommendation
+          engines and computer vision — each one now a real-world case study in my training programs.
+        </p>
+      </div>
+
+      {!isHomePage && (
+        <div className="mb-10 flex flex-wrap gap-2" role="tablist" aria-label="Filter projects by category">
           {availableTypes.map((type) => (
             <button
               key={type}
               type="button"
+              role="tab"
+              aria-selected={selectedType === type}
               onClick={() => setSelectedType(type)}
               className={cn(
-                "rounded-xl border px-5 py-2 text-sm font-semibold transition-all duration-300",
+                "rounded-xl border px-4 py-2 text-sm font-semibold transition-all duration-300",
                 selectedType === type
                   ? "border-primary bg-primary text-black shadow-lg shadow-primary/20"
                   : "border-border bg-card/50 text-muted-foreground hover:border-primary/50 hover:text-foreground"
               )}
             >
-              {type}
+              {type} <span className="ml-1 opacity-60">{typeCounts[type]}</span>
             </button>
           ))}
         </div>
-      </div>
+      )}
 
-      {/* Tech Filter Removed */}
-
-      <div className="grid gap-8 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {displayProjects.map((project) => (
-          <article
-            key={project.id}
-            className="group relative flex flex-col overflow-hidden rounded-3xl border border-border bg-card transition-all duration-500 hover:-translate-y-2 hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10"
-          >
-            {/* Project Header Decor */}
-            <div className="absolute top-0 right-0 p-6 opacity-10 transition-opacity group-hover:opacity-20">
-              <Code2 size={80} />
-            </div>
-
-            <div className="flex flex-1 flex-col p-8">
-              <div className="mb-6 flex items-center justify-between">
-                <div className="flex flex-wrap items-center gap-2">
-                  <span className="rounded-full bg-primary/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-primary">
-                    {project.type}
-                  </span>
-                  {project.isPublic && (
-                    <span className="rounded-full border border-green-500/30 bg-green-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-green-500">
-                      OPEN DEMO
-                    </span>
-                  )}
-                </div>
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary text-primary group-hover:bg-primary group-hover:text-black transition-colors duration-300">
-                  <Database size={20} />
-                </div>
-              </div>
-
-              <h3 className="mb-2 text-2xl font-bold leading-tight group-hover:text-primary transition-colors">
-                {project.title}
-              </h3>
-
-              <div className="mb-4 flex items-center gap-2 text-[11px] font-semibold text-muted-foreground">
-                <span>{project.organization}</span>
-                {project.confidential && (
-                  <span className="inline-flex items-center gap-1 rounded-full border border-border px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-muted-foreground">
-                    <ShieldCheck size={11} className="text-primary" /> NDA Protected
-                  </span>
-                )}
-              </div>
-
-              <div className="mb-8 space-y-6">
-                <div className="flex gap-4">
-                  <div className="mt-1 shrink-0 text-primary">
-                    <Layers size={18} />
-                  </div>
-                  <div>
-                    <h4 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">The Challenge</h4>
-                    <p className="mt-1 text-sm text-foreground/80 leading-relaxed">{project.businessProblem}</p>
-                  </div>
-                </div>
-
-                <div className="flex gap-4">
-                  <div className="mt-1 shrink-0 text-primary">
-                    <TrendingUp size={18} />
-                  </div>
-                  <div>
-                    <h4 className="text-[11px] font-bold uppercase tracking-widest text-muted-foreground">The Impact</h4>
-                    <p className="mt-1 text-sm text-foreground/80 leading-relaxed">{project.outcomeImpact}</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-auto pt-6 border-t border-border">
-                {project.relatedPrograms.length > 0 && (
-                  <p className="mb-4 text-[11px] font-semibold text-muted-foreground">
-                    Taught in:{" "}
-                    {project.relatedPrograms
-                      .map((slug) => programs.find((p) => p.slug === slug)?.title)
-                      .filter(Boolean)
-                      .join(" · ")}
-                  </p>
-                )}
-                <div className="mb-6 flex flex-wrap gap-2">
-                  {project.toolsStack.map((tool) => (
-                    <span 
-                      key={tool}
-                      className="rounded-md bg-secondary/50 px-2 py-1 text-[10px] font-medium text-muted-foreground group-hover:bg-primary/5 group-hover:text-primary transition-colors"
-                    >
-                      {tool}
-                    </span>
-                  ))}
-                </div>
-
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium text-muted-foreground flex items-center gap-1">
-                    <Wrench size={12} className="text-primary" />
-                    {project.dataScale}
-                  </span>
-                  <a
-                    href={project.link}
-                    className="inline-flex items-center gap-2 text-sm font-bold text-primary group/link hover:underline"
-                  >
-                    DETAIL
-                    <ChevronRight size={16} className="transition-transform group-hover/link:translate-x-1" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </article>
+          <ProjectCard key={project.id} project={project} />
         ))}
       </div>
-      
+
       {filteredProjects.length === 0 && (
         <div className="flex flex-col items-center justify-center py-20 text-center">
           <div className="mb-4 rounded-full bg-secondary p-4 text-muted-foreground">
             <Filter size={32} />
           </div>
           <h3 className="text-xl font-bold">No projects found</h3>
-          <p className="text-muted-foreground">Try adjusting your filters to find what you're looking for.</p>
-          <button 
-            onClick={() => {setSelectedType("All"); setSelectedTech(null);}}
-            className="mt-6 text-primary font-bold hover:underline"
-          >
-            Clear all filters
+          <button onClick={() => setSelectedType("All")} className="mt-6 font-bold text-primary hover:underline">
+            Show all projects
           </button>
         </div>
       )}
-      {isHomePage && filteredProjects.length > (limit || 0) && (
-        <div className="mt-20 flex justify-center">
-          <a
+
+      {isHomePage && projects.length > (limit || 0) && (
+        <div className="mt-16 flex justify-center">
+          <Link
             href="/projects"
             className="group inline-flex items-center gap-2 rounded-full border border-primary px-8 py-4 text-sm font-bold text-primary transition-all hover:bg-primary hover:text-black"
           >
-            SHOW MORE
+            See all {projects.length} projects
             <ChevronRight className="transition-transform group-hover:translate-x-1" size={18} />
-          </a>
+          </Link>
         </div>
       )}
     </section>
