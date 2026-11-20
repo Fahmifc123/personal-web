@@ -26,16 +26,6 @@ yarn-error.log*
 .env*.local
 .env
 
-# python
-api/.env
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-api/venv/
-api/logs/
-
 # vercel
 .vercel
 
