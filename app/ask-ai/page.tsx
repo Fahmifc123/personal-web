@@ -104,7 +104,8 @@ export default function AskAIPage() {
       </div>
 
       {/* Chat Area */}
-      <div className="flex-1 overflow-y-auto p-4 md:p-8 space-y-6 scroll-smooth bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]">
+      <div className="relative flex-1 overflow-y-auto p-4 md:p-8 space-y-6 scroll-smooth">
+        <div className="pointer-events-none absolute inset-0 bg-grid-pattern opacity-[0.04] [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
         <div className="mx-auto max-w-3xl space-y-6">
           {messages.map((msg, i) => (
             <div
@@ -183,7 +184,7 @@ export default function AskAIPage() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Tanyakan sesuatu tentang pengalaman Fahmi..."
+            placeholder="Ask something about Fahmi's experience..."
             className="w-full rounded-2xl border border-border bg-background py-4 pl-6 pr-14 text-sm shadow-inner focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary transition-all"
           />
           <button

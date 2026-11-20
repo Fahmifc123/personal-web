@@ -1,5 +1,5 @@
 # Python backend (deployed separately on dedicated server)
-api/
+/api/
 
 # Python cache
 __pycache__/
